@@ -19,10 +19,27 @@ session_start();
 $settings = require __DIR__ . '/../src/settings.php';
 $app = new \Slim\App($settings);
 
-// my test route
+// my test route 
 $app->get('/test/{name}', function(Request $request, Response $response, array $args) {
     $name = $args['name'];
     $response->getBody()->write("Hello World, $name");
+    return $response;
+});
+
+$app->get('/posts', function(Request $request, Response $response, $args) {
+    // $name = $args['name'];
+    include __DIR__ . "/../src/dbconnection.php";
+    $sql = "SELECT * FROM posts ORDER BY id";
+
+    try {
+		$results = $db->query($sql); 
+	} catch (Exception $e) {
+		echo $e->getMessage();
+		return array();
+	}
+	return $results->fetchAll(PDO::FETCH_ASSOC);
+
+    $response->write($results);
     return $response;
 });
 
