@@ -26,6 +26,7 @@ $app->get('/test/{name}', function(Request $request, Response $response, array $
     return $response;
 });
 
+// my test db query
 $app->get('/posts', function(Request $request, Response $response, $args) {
     // $name = $args['name'];
     include __DIR__ . "/../src/dbconnection.php";
