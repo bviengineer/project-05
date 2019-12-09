@@ -19,16 +19,8 @@ session_start();
 $settings = require __DIR__ . '/../src/settings.php';
 $app = new \Slim\App($settings);
 
-// my test route 
-$app->get('/test/{name}', function(Request $request, Response $response, array $args) {
-    $name = $args['name'];
-    $response->getBody()->write("Hello World, $name");
-    return $response;
-});
-
 // my test db query
-$app->get('/posts', function(Request $request, Response $response, $args) {
-    // $name = $args['name'];
+$app->get('/posts', function(Request $request, Response $response) {
     include __DIR__ . "/../src/dbconnection.php";
     $sql = "SELECT * FROM posts ORDER BY id";
 
@@ -40,8 +32,8 @@ $app->get('/posts', function(Request $request, Response $response, $args) {
 	}
 	return $results->fetchAll(PDO::FETCH_ASSOC);
 
-    $response->write($results);
-    return $response;
+    return $response->write($results);
+    //return $response;
 });
 
 // Set up dependencies
