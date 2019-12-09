@@ -30,10 +30,10 @@ $app->get('/test/{method}', function($request, $response) {
 });
 
 // my test db query
-$app->get('/posts', function($request, $response) {
+$app->get('/posts', function() {
 	include "Posts.php";
 	$posts = new Posts;
-	$response = $posts->getPosts();
-	var_dump($response);
+	$results = $posts->getPosts();
+	var_dump($results);
 });
 
