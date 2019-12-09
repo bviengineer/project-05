@@ -1,26 +1,29 @@
 <?php
 // Routes
 
-$app->get('/[{name}]', function ($request, $response, $args) {
-    // Sample log message
-    $this->logger->info("Slim-Skeleton '/' route");
+// $app->get('/[{name}]', function ($request, $response, $args) {
+//     // Sample log message
+//     $this->logger->info("Slim-Skeleton '/' route");
 
-    // Render index view
-    return $this->renderer->render($response, 'index.phtml', $args);
-}); 
+//     // Render index view
+//     return $this->renderer->render($response, 'index.phtml', $args);
+// }); 
 
-// my test route 
-$app->get('/hello/[{name}]', function(Request $request, Response $response) {
-    $name = $request->getAttribute('name');
-    //$name = $request->getQueryParams(['name']);
-    $response->getBody()->write("Hello World, $name");
-    //echo "<pre>";
+// my test route
+$app->get('/', function($request, $response, $args) {
+    $response->getBody()->write("Hello World");
     return $response;
-    //echo "</pre>";
 });
 
 // my test route 
-$app->get('/test/{method}', function(Request $request, Response $response) {
+$app->get('/hello/[{name}]', function($request, $response) {
+    $name = $request->getAttribute('name');
+    $response->getBody()->write("Hello World, $name");
+    return $response;
+});
+
+// // my test route 
+$app->get('/test/{method}', function($request, $response) {
     $method = $request->getMethod();
     return $method;
 });
