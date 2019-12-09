@@ -20,21 +20,21 @@ $settings = require __DIR__ . '/../src/settings.php';
 $app = new \Slim\App($settings);
 
 // my test db query
-$app->get('/posts', function(Request $request, Response $response) {
-    include __DIR__ . "/../src/dbconnection.php";
-    $sql = "SELECT * FROM posts ORDER BY id";
+// $app->get('/posts', function(Request $request, Response $response) {
+//     include __DIR__ . "/../src/dbconnection.php";
+//     $sql = "SELECT * FROM posts ORDER BY id";
 
-    try {
-		$results = $db->query($sql); 
-	} catch (Exception $e) {
-		echo $e->getMessage();
-		return array();
-	}
-	return $results->fetchAll(PDO::FETCH_ASSOC);
+//     try {
+// 		$results = $db->query($sql); 
+// 	} catch (Exception $e) {
+// 		echo $e->getMessage();
+// 		return array();
+// 	}
+// 	return $results->fetchAll(PDO::FETCH_ASSOC);
 
-    return $response->write($results);
+//     return $response->write($results);
     //return $response;
-});
+//});
 
 // Set up dependencies
 require __DIR__ . '/../src/dependencies.php';
