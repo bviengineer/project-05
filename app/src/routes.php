@@ -32,7 +32,7 @@ $app->get('/test/{method}', function($request, $response) {
 // my test db query
 $app->get('/posts', function() {
 	include "Posts.php";
-	$posts = new Posts;
+  $posts = new Posts;
 	$results = $posts->getPosts();
 	var_dump($results);
 });
@@ -42,6 +42,14 @@ $app->get('/comments', function() {
 	include "Comments.php";
 	$comm = new Comments;
 	$results = $comm->getComments();
+	var_dump($results);
+});
+
+// my test db query
+$app->get('/pm', function() {
+	include "Posts.php"; 
+  $fullPost = new Posts;  
+  $results = $fullPost->getFullPosts();
 	var_dump($results);
 });
 
