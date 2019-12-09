@@ -34,6 +34,6 @@ $app->get('/posts', function($request, $response) {
 	include "Posts.php";
 	$posts = new Posts;
 	$response = $posts->getPosts();
-	return $response;
+	var_dump($response);
 });
 
