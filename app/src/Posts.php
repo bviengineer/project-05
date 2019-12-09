@@ -3,6 +3,7 @@
 class Posts {
 // my test db query
 
+	// Retrieve all posts
 	public function getPosts() {
 		include __DIR__ . "/../src/dbconnection.php";
 		$sql = "SELECT * FROM posts ORDER BY id";
