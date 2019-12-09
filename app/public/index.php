@@ -30,10 +30,11 @@ $app = new \Slim\App($settings);
 // 		echo $e->getMessage();
 // 		return array();
 // 	}
-// 	return $results->fetchAll(PDO::FETCH_ASSOC);
+	//var_dump($results->fetchAll(PDO::FETCH_ASSOC));
 
-//     return $response->write($results);
+    //return $response->write($results);
     //return $response;
+    //return $response->getBody();
 //});
 
 // Set up dependencies
