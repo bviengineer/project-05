@@ -37,3 +37,11 @@ $app->get('/posts', function() {
 	var_dump($results);
 });
 
+// my test db query
+$app->get('/comments', function() {
+	include "Comments.php";
+	$comm = new Comments;
+	$results = $comm->getComments();
+	var_dump($results);
+});
+
