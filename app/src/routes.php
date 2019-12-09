@@ -33,6 +33,7 @@ $app->get('/test/{method}', function($request, $response) {
 $app->get('/posts', function($request, $response) {
 	include "Posts.php";
 	$posts = new Posts;
-	return $posts->getPosts();
+	$response = $posts->getPosts();
+	return $response;
 });
 
