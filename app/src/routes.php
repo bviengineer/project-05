@@ -52,4 +52,3 @@ $app->get('/pm', function() {
   $results = $fullPost->getFullPosts();
 	var_dump($results);
 });
-
