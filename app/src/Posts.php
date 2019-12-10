@@ -1,12 +1,11 @@
 <?php
 
 class Posts {
-	protected $db;
+	protected $db; // database var 
 
-// my test db query
+// Databse PDO Construtor Method
 public function __construct(\PDO $db) {
-	$this->$db = $db; 
-	return $db->fetchAll(PDO::FETCH_OBJ);
+	$this->db = $db; 
 }
 
 	// Retrieve all posts
