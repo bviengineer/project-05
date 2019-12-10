@@ -23,12 +23,12 @@ public function __construct(\PDO $db) {
 	}
 	// Retrieve all posts with associated comments
 	public function getFullPosts() {
-		include __DIR__ . "/../src/dbconnection.php";
+		//include __DIR__ . "/../src/dbconnection.php";
 		$sql = 'SELECT posts.title, posts.date, posts.body, comments.name, comments.body 
           	FROM posts
         		LEFT OUTER JOIN comments on comments.id = posts.id';
 		try {
-			$results = $db->query($sql); 
+			$results = $this->db->query($sql); 
 		} catch (Exception $e) {
 			echo $e->getMessage();
 			return array();
