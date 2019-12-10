@@ -9,7 +9,7 @@ class Review
     {
         $this->database = $database;
     }
-    public function getReviewsByC ourseId($course_id)
+    public function getReviewsByCourseId($course_id)
     {
         if (empty($course_id)) {
             throw new ApiException(ApiException::REVIEW_INFO_REQUIRED);
@@ -60,7 +60,7 @@ class Review
         $statement->bindParam('rating', $data['rating']);
         $statement->bindParam('comment', $data['comment']);
         $statement->execute();
-        if ($statement->rowCount()<1) {\
+        if ($statement->rowCount()<1) {
             throw new ApiException(ApiException::REVIEW_UPDATE_FAILED);
         }
         return $this->getReview($data['review_id']);
