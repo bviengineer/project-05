@@ -29,7 +29,7 @@ $app->get('/test/{method}', function($request, $response) {
     return $method;
 });
 
-// my test db query
+// Test route for only posts
 $app->get('/posts', function() {
 	include "Posts.php";
   $posts = new Posts($this->db);
@@ -47,10 +47,10 @@ $app->get('/comments', function() {
 	var_dump($results);
 });
 
-// my test db query
+// Test route for all posts
 $app->get('/pm', function() {
 	include "Posts.php"; 
-  $fullPost = new Posts;  
+  $fullPost = new Posts($this->db);  
   $results = $fullPost->getFullPosts();
 	var_dump($results);
 });
