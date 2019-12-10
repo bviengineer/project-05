@@ -28,7 +28,7 @@ class Posts {
 			echo $e->getMessage();
 			return array();
 		}
-		return $results->fetchAll(PDO::FETCH_ASSOC);
+		return $results->fetchAll(PDO::FETCH_OBJ);
 	}
 	// Add a post to database
 	// public function addPost() {
