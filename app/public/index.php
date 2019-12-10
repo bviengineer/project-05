@@ -18,8 +18,8 @@ session_start();
 // Instantiate the app
 $settings = require __DIR__ . '/../src/settings.php';
 $app = new \Slim\App($settings);
-$container = $app->getContainer();
-$dbaseSettings = $container->get('settings')['db'];
+// $container = $app->getContainer();
+// $dbaseSettings = $container->get('settings')['db'];
 
 // my test db query
 // $app->get('/posts', function(Request $request, Response $response) {

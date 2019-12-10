@@ -1,15 +1,21 @@
 <?php
 
 class Posts {
+	protected $db;
+
 // my test db query
+public function __construct(\PDO $db) {
+	$this->$db = $db; 
+	return $db->fetchAll(PDO::FETCH_OBJ);
+}
 
 	// Retrieve all posts
 	public function getPosts() {
-		include __DIR__ . "/../src/dbconnection.php";
+		// include __DIR__ . "/../src/dbconnection.php";
 		$sql = "SELECT * FROM posts ORDER BY id";
 
 		try {
-			$results = $db->query($sql); 
+			$results = $this->db->query($sql); 
 		} catch (Exception $e) {
 			echo $e->getMessage();
 			return array();
