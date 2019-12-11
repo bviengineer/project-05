@@ -26,7 +26,7 @@ public function __construct(\PDO $db) {
 		//include __DIR__ . "/../src/dbconnection.php";
 		$sql = 'SELECT posts.title, posts.date, posts.body, comments.name, comments.body 
           	FROM posts
-        		LEFT OUTER JOIN comments on comments.id = posts.id';
+        		LEFT OUTER JOIN comments on comments.post_id = posts.id';
 		try {
 			$results = $this->db->query($sql); 
 		} catch (Exception $e) {
