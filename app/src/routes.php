@@ -52,5 +52,7 @@ $app->get('/pm', function() {
 	include "Posts.php"; 
   $fullPost = new Posts($this->db);  
   $results = $fullPost->getFullPosts();
-	var_dump($results);
+  echo "<pre>";
+  var_dump($results);
+  echo "</pre>";
 });
