@@ -1,7 +1,9 @@
 <?php
 
 class Posts {
-	protected $db; // database var 
+	
+	// Database variable 
+	protected $db; 
 
 	// Databse PDO Construtor Method
 	public function __construct(\PDO $db) {
@@ -13,12 +15,7 @@ class Posts {
 		// include __DIR__ . "/../src/dbconnection.php";
 		$sql = "SELECT * FROM posts ORDER BY id";
 
-		try {
-			$results = $this->db->query($sql); 
-		} catch (Exception $e) {
-			echo $e->getMessage();
-			return array();
-		}
+		$results = $this->db->query($sql); 
 		return $results->fetchAll(PDO::FETCH_ASSOC);
 	}
 	// Retrieve all posts with associated comments
