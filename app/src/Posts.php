@@ -9,13 +9,11 @@ class Posts {
 	public function __construct(\PDO $db) {
 		$this->db = $db; 
 	}
-
 	// Retrieve all posts
 	public function getPosts() {
-		// include __DIR__ . "/../src/dbconnection.php";
 		$sql = "SELECT * FROM posts ORDER BY id";
-
-		$results = $this->db->query($sql); 
+		$results = $this->db->prepare($sql); 
+		$results->execute();
 		return $results->fetchAll(PDO::FETCH_ASSOC);
 	}
 	// Retrieve all posts with associated comments
