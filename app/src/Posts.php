@@ -15,19 +15,16 @@ class Posts {
 		$results->execute();
 		return $results->fetchAll(PDO::FETCH_ASSOC);
 	}
-	// Retrieve all posts with associated comments
-	public function getFullPosts() {
-		//include __DIR__ . "/../src/dbconnection.php";
-		$sql = 'SELECT posts.title, posts.date, posts.body, comments.name, comments.body 
-          	FROM posts
-        		LEFT OUTER JOIN comments on comments.post_id = posts.id';
-		try {
-			$results = $this->db->query($sql); 
-		} catch (Exception $e) {
-			echo $e->getMessage();
-			return array();
-		}
-		return $results->fetchAll(PDO::FETCH_OBJ);
+	// Retrieve single post and associated comment(s)
+	public function getFullPost() {
+		$sql = "SELECT posts.title, posts.date, posts.body, comments.name, comments.body 
+          	FROM posts 
+						LEFT OUTER JOIN comments
+						WHERE comments.post_id = posts.id";
+
+		$results = $this->db->prepare($sql);
+		$results->execute();
+		return $results->fetchAll(PDO::FETCH_ASSOC);
 	}
 	// Add a post to database
 	// public function addPost() {
