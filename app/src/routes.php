@@ -10,11 +10,16 @@
 //     return $this->renderer->render($response, 'index.phtml', $args);
 // }); 
 
-// my test route
+// Home page -> display all posts
 $app->get('/', function($request, $response, $args) {
-  $response->getBody()->write("Hello World");
-  return $response;
-});
+  $posts = new Posts($this->db);
+  $results = $posts->getAllPosts();
+
+// my test route
+// $app->get('/', function($request, $response, $args) {
+//   $response->getBody()->write("Hello World");
+//   return $response;
+// });
 
 // my test route 
 $app->get('/hello/[{name}]', function($request, $response) {
@@ -29,10 +34,7 @@ $app->get('/test/{method}', function($request, $response) {
     return $method;
 });
 
-// Test route for only posts
-$app->get('/posts', function($request, $response, $args) {
-  $posts = new Posts($this->db);
-  $results = $posts->getAllPosts();
+
   
   //$results = $this->db->query('SELECT * FROM posts')->fetchAll(PDO::FETCH_OBJ); //this works
   var_dump($results);
