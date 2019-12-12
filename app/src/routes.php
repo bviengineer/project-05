@@ -47,7 +47,6 @@ $app->get('/comments', function() {
 
 // Test route for all posts
 $app->get('/pm', function() {
-	include "Posts.php"; 
   $fullPost = new Posts($this->db);  
   $results = $fullPost->getFullPost();
 	echo "<pre>";	
