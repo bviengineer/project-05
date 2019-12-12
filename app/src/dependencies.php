@@ -20,5 +20,12 @@ $container['logger'] = function ($c) {
 
 // Database connection 
 $container['db'] = function () {
-    return new PDO("sqlite:".__DIR__."/../../blog.db");
+	try {
+		$db = new PDO("sqlite:".__DIR__."/../../blog.db");
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
+	} catch (Exception $e) {
+		echo $e->getMessage();
+		exit;
+	}
+	return $db;
 };
