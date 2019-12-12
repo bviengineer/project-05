@@ -11,8 +11,7 @@ class Posts {
 	}
 	// Retrieve all posts for display 
 	public function getAllPosts() {
-		$sql = "SELECT * FROM posts ORDER BY id";
-		$results = $this->db->prepare($sql); 
+		$results = $this->db->prepare("SELECT * FROM posts ORDER BY id"); 
 		$results->execute();
 		return $results->fetchAll(PDO::FETCH_ASSOC);
 	}
