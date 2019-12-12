@@ -30,12 +30,16 @@ $app->get('/test/{method}', function($request, $response) {
 });
 
 // Test route for only posts
-$app->get('/posts', function() {
+$app->get('/posts', function($request, $response, $args) {
   $posts = new Posts($this->db);
   $results = $posts->getAllPosts();
   
   //$results = $this->db->query('SELECT * FROM posts')->fetchAll(PDO::FETCH_OBJ); //this works
-	var_dump($results);
+  var_dump($results);
+  $args = $results;
+  
+  // Render index view
+  return $this->renderer->render($response, 'index.phtml', $args);
 });
 
 // my test db query
