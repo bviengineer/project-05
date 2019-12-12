@@ -3,10 +3,10 @@
 class Posts {
 	protected $db; // database var 
 
-// Databse PDO Construtor Method
-public function __construct(\PDO $db) {
-	$this->db = $db; 
-}
+	// Databse PDO Construtor Method
+	public function __construct(\PDO $db) {
+		$this->db = $db; 
+	}
 
 	// Retrieve all posts
 	public function getPosts() {
