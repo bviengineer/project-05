@@ -10,7 +10,7 @@ class Posts {
 		$this->db = $db; 
 	}
 	// Retrieve all posts for display 
-	public function getPosts() {
+	public function getAllPosts() {
 		$sql = "SELECT * FROM posts ORDER BY id";
 		$results = $this->db->prepare($sql); 
 		$results->execute();
