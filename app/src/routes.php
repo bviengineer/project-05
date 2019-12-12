@@ -42,7 +42,7 @@ $app->get('/posts', function() {
 // my test db query
 $app->get('/comments', function() {
 	include "Comments.php";
-	$comm = new Comments;
+	$comm = new Comments($this->db);
 	$results = $comm->getComments();
 	var_dump($results);
 });
