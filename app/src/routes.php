@@ -15,6 +15,13 @@ $app->get('/', function($request, $response, $args) {
   $posts = new Posts($this->db);
   $results = $posts->getAllPosts();
 
+  var_dump($results);
+  $args = $results;
+  
+  // Render index view
+  return $this->renderer->render($response, 'index.phtml', $args);
+});
+
 // my test route
 // $app->get('/', function($request, $response, $args) {
 //   $response->getBody()->write("Hello World");
@@ -22,26 +29,16 @@ $app->get('/', function($request, $response, $args) {
 // });
 
 // my test route 
-$app->get('/hello/[{name}]', function($request, $response) {
-    $name = $request->getAttribute('name');
-    $response->getBody()->write("Hello World, $name");
-    return $response;
-});
+// $app->get('/hello/[{name}]', function($request, $response) {
+//     $name = $request->getAttribute('name');
+//     $response->getBody()->write("Hello World, $name");
+//     return $response;
+// });
 
 // my test route 
 $app->get('/test/{method}', function($request, $response) {
     $method = $request->getMethod();
     return $method;
-});
-
-
-  
-  //$results = $this->db->query('SELECT * FROM posts')->fetchAll(PDO::FETCH_OBJ); //this works
-  var_dump($results);
-  $args = $results;
-  
-  // Render index view
-  return $this->renderer->render($response, 'index.phtml', $args);
 });
 
 // my test db query
