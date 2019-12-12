@@ -51,7 +51,7 @@ $app->get('/comments', function() {
 $app->get('/pm', function() {
 	include "Posts.php"; 
   $fullPost = new Posts($this->db);  
-  $results = $fullPost->getFullPosts();
+  $results = $fullPost->getFullPost();
 	echo "<pre>";	
 	var_dump($results);
 	echo "</pre>";
