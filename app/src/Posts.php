@@ -9,7 +9,7 @@ class Posts {
 	public function __construct(\PDO $db) {
 		$this->db = $db; 
 	}
-	// Retrieve all posts
+	// Retrieve all posts for display 
 	public function getPosts() {
 		$sql = "SELECT * FROM posts ORDER BY id";
 		$results = $this->db->prepare($sql); 
