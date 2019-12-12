@@ -33,7 +33,7 @@ $app->get('/test/{method}', function($request, $response) {
 $app->get('/posts', function() {
 	include "Posts.php";
   $posts = new Posts($this->db);
-  $results = $posts->getPosts();
+  $results = $posts->getAllPosts();
   
   //$results = $this->db->query('SELECT * FROM posts')->fetchAll(PDO::FETCH_OBJ); //this works
 	var_dump($results);
