@@ -1,4 +1,6 @@
 <?php
+use App\Posts;
+//use App\Comments;
 // Routes
 
 
@@ -12,7 +14,7 @@
 
 // Home page -> display all posts
 $app->get('/', function($request, $response, $args) {
-  $posts = new \Posts($this->db);
+  $posts = new Posts($this->db);
   $results = $posts->getAllPosts();
 
   var_dump($results);
