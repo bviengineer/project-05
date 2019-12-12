@@ -1,5 +1,7 @@
 <?php
 
+namespace App\src;
+
 class Posts {
 	
 	// Database variable 
