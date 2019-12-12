@@ -31,7 +31,6 @@ $app->get('/test/{method}', function($request, $response) {
 
 // Test route for only posts
 $app->get('/posts', function() {
-	include "Posts.php";
   $posts = new Posts($this->db);
   $results = $posts->getAllPosts();
   
