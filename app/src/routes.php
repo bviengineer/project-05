@@ -20,7 +20,8 @@ $app->get('/', function($request, $response, $args) {
   $args = $results;
   
   // Render index view
-  return $this->renderer->render($response, 'index.phtml', $args);
+  return $this->renderer->render($response, 'index.html', $args);
+  //return $this->renderer->render($response, 'index.twig', array("name" => "Kaisma"));
 });
 
 // my test route
@@ -30,11 +31,11 @@ $app->get('/', function($request, $response, $args) {
 // });
 
 // my test route 
-// $app->get('/hello/[{name}]', function($request, $response) {
-//     $name = $request->getAttribute('name');
-//     $response->getBody()->write("Hello World, $name");
-//     return $response;
-// });
+$app->get('/hello/[{name}]', function($request, $response, $args) {
+    $name = $args['name'];
+    $response->getBody()->write("Hello World, $name");
+    return $response;
+});
 
 // my test route 
 $app->get('/test/{method}', function($request, $response) {
