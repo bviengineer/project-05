@@ -16,11 +16,11 @@ $app->get('/', function($request, $response, $args) {
   $posts = new Posts($this->db);
   $results = $posts->getAllPosts();
 
-  var_dump($results);
+  //var_dump($results);
   $args = $results;
   
   // Render index view
-  return $this->renderer->render($response, 'index.html', $args);
+  return $this->renderer->render($response, 'home.php', $args);
   //return $this->renderer->render($response, 'index.twig', array("name" => "Kaisma"));
 });
 
