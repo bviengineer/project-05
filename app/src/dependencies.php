@@ -4,10 +4,10 @@
 $container = $app->getContainer();
 
 // view renderer
-$container['renderer'] = function ($c) {
-    $settings = $c->get('settings')['renderer'];
-    return new Slim\Views\PhpRenderer($settings['template_path']);
-};
+// $container['renderer'] = function ($c) {
+//     $settings = $c->get('settings')['renderer'];
+//     return new Slim\Views\PhpRenderer($settings['template_path']);
+// };
 
 // monolog
 $container['logger'] = function ($c) {
@@ -20,7 +20,7 @@ $container['logger'] = function ($c) {
 
 // Database connection 
 $container['db'] = function () {
-	try {
+	try { 
 		$db = new PDO("sqlite:".__DIR__."/../../blog.db");
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
 	} catch (Exception $e) {
@@ -28,4 +28,18 @@ $container['db'] = function () {
 		exit;
 	}
 	return $db;
+};
+
+// Register view component on container
+$container['view'] = function ($container) {
+    $view = new \Slim\Views\Twig('../templates', [
+        'cache' => 'path/to/cache'
+    ]);
+
+    // Instantiate and add Slim specific extension -> http://www.slimframework.com/docs/v3/features/templates.html
+    $router = $container->get('router');
+    $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
+    $view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
+
+    return $view;
 };
