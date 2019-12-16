@@ -26,9 +26,9 @@ $app->get('/', function($request, $response, $args) {
 
 // My test route using twig-view 
 $app->get('/hello/{name}', function ($request, $response, $args) {
-  return $this->view->render($response, 'index.html', [
+  return $this->view->render($response, 'index.twig', [
       'name' => $args['name']
-  ])->setName('me');
+  ]);
 });
 
 // my test route
