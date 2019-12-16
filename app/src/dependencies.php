@@ -32,9 +32,7 @@ $container['db'] = function () {
 
 // Register view component on container
 $container['view'] = function ($container) {
-    $view = new \Slim\Views\Twig('../templates', [
-        'cache' => 'false'
-    ]);
+    $view = new \Slim\Views\Twig('../templates', []);
 
     // Instantiate and add Slim specific extension -> http://www.slimframework.com/docs/v3/features/templates.html
     $router = $container->get('router');
