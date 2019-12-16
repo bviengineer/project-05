@@ -20,8 +20,8 @@ $app->get('/', function($request, $response, $args) {
   $args = $results;
   
   // Render index view
-  return $this->renderer->render($response, 'home.php', $args);
-  //return $this->renderer->render($response, 'index.twig', array("name" => "Kaisma"));
+  //return $this->renderer->render($response, 'home.php', $args);
+  return $this->view->render($response, 'home.php', array("name" => "Kaisma"));
 });
 
 // my test route
