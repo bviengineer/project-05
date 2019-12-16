@@ -24,6 +24,13 @@ $app->get('/', function($request, $response, $args) {
   return $this->view->render($response, 'home.php', array("name" => "Kaisma"));
 });
 
+// My test route using twig-view 
+$app->get('/hello/{name}', function ($request, $response, $args) {
+  return $this->view->render($response, 'index.html', [
+      'name' => $args['name']
+  ])->setName('me');
+});
+
 // my test route
 // $app->get('/', function($request, $response, $args) {
 //   $response->getBody()->write("Hello World");
@@ -31,11 +38,11 @@ $app->get('/', function($request, $response, $args) {
 // });
 
 // my test route 
-$app->get('/hello/[{name}]', function($request, $response, $args) {
-    $name = $args['name'];
-    $response->getBody()->write("Hello World, $name");
-    return $response;
-});
+// $app->get('/hello/[{name}]', function($request, $response, $args) {
+//     $name = $args['name'];
+//     $response->getBody()->write("Hello World, $name");
+//     return $response;
+// });
 
 // my test route 
 $app->get('/test/{method}', function($request, $response) {
