@@ -18,10 +18,14 @@ $app->get('/', function($request, $response, $args) {
 
   //var_dump($results);
   $args = $results;
+  //$data = implode(" ", $args);
   
   // Render index view
   //return $this->renderer->render($response, 'home.php', $args);
-  return $this->view->render($response, 'home.php', array("name" => "Kaisma"));
+  return $this->view->render($response, 'home.twig', array('name' => $args[0]["title"]));
+  // echo "<pre>";
+  // var_dump($results);
+  // echo "</pre>";
 });
 
 // My test route using twig-view 
