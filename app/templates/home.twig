@@ -20,8 +20,9 @@
         </header>
         <section>
             <div class="container">
-                    Output here: {% for item in name %}
-                    {{ item }}
+                    {% for item in posts %}
+                    {{ item.title }}
+                    {{ item.body }}
                     {% endfor %}
                 <div class="entry-list">
                     <article>
