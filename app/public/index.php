@@ -18,26 +18,6 @@ session_start();
 // Instantiate the app
 $settings = require __DIR__ . '/../src/settings.php';
 $app = new \Slim\App($settings);
-// $container = $app->getContainer();
-// $dbaseSettings = $container->get('settings')['db'];
-
-// my test db query
-// $app->get('/posts', function(Request $request, Response $response) {
-//     include __DIR__ . "/../src/dbconnection.php";
-//     $sql = "SELECT * FROM posts ORDER BY id";
-
-//     try {
-// 		$results = $db->query($sql); 
-// 	} catch (Exception $e) {
-// 		echo $e->getMessage();
-// 		return array();
-// 	}
-	//var_dump($results->fetchAll(PDO::FETCH_ASSOC));
-
-    //return $response->write($results);
-    //return $response;
-    //return $response->getBody();
-//});
 
 // Set up dependencies
 require __DIR__ . '/../src/dependencies.php';
