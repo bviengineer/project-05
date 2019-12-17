@@ -1,33 +1,24 @@
 <?php
+// Useage of model classes 
 use App\Posts;
 use App\Comments;
 
-// Routes
-// $app->get('/[{name}]', function ($request, $response, $args) {
-//     // Sample log message
-//     $this->logger->info("Slim-Skeleton '/' route");
-
-//     // Render index view
-//     return $this->renderer->render($response, 'index.phtml', $args);
-// }); 
+/**************************************
+  Routes
+ **************************************/
 
 // Home page -> display all posts
 $app->get('/', function($request, $response, $args) {
+  
+  // Retrieve all posts from database 
   $posts = new Posts($this->db);
   $results = $posts->getAllPosts();
 
-  //var_dump($results);
-  $args = $results;
-  //$data = implode(" ", $args);
+  // Assign a key to the args array & store results of query
+  $args['posts'] = $results;
   
-  // Render index view
-  //return $this->renderer->render($response, 'home.php', $args);
-  return $this->view->render($response, 'home.twig', ['name' => $args[0]
-
-  ]);
-  // echo "<pre>";
-  // var_dump($results);
-  // echo "</pre>";
+  // Render results
+  return $this->view->render($response, 'home.twig', $args);
 });
 
 // My test route using twig-view 
