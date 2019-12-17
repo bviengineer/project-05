@@ -28,19 +28,6 @@ $app->get('/hello/{name}', function ($request, $response, $args) {
   ]);
 });
 
-// my test route
-// $app->get('/', function($request, $response, $args) {
-//   $response->getBody()->write("Hello World");
-//   return $response;
-// });
-
-// my test route 
-// $app->get('/hello/[{name}]', function($request, $response, $args) {
-//     $name = $args['name'];
-//     $response->getBody()->write("Hello World, $name");
-//     return $response;
-// });
-
 // my test route 
 $app->get('/test/{method}', function($request, $response) {
     $method = $request->getMethod();
