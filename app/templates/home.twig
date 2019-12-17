@@ -20,16 +20,13 @@
         </header>
         <section>
             <div class="container">
-                    {% for item in posts %}
-                    {{ item.title }}
-                    {{ item.body }}
-                    {% endfor %}
                 <div class="entry-list">
-                    <article>
-                        <h2><a href="detail.html">The best day I’ve ever had</a></h2>
-                        <time datetime="2016-01-31 1:00">January 31, 2016 at 1:00</time>
-                    </article>
-                    <article>
+                {% for item in posts %}
+                  <article>
+                    <h2><a href="detail.html">{{ item.title }}</a></h2>
+                    <time datetime="2016-01-31 1:00">{{ item.date }}</time>
+                  </article>
+                    <!-- <article>
                         <h2><a href="detail_2.html">The absolute worst day I’ve ever had</a></h2>
                         <time datetime="2016-01-31 1:00">January 31, 2016 at 1:00</a></time>
                     </article>
@@ -40,7 +37,8 @@
                     <article>
                         <h2><a href="detail_4.html">Dude, where’s my car?</a></h2>
                         <time datetime="2016-01-31 1:00">January 31, 2016 at 1:00</a></time>
-                    </article>
+                    </article> -->
+                    {% endfor %}
                 </div>
             </div>
         </section>
