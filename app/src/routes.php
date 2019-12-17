@@ -22,7 +22,9 @@ $app->get('/', function($request, $response, $args) {
   
   // Render index view
   //return $this->renderer->render($response, 'home.php', $args);
-  return $this->view->render($response, 'home.twig', array('name' => $args[0]["title"]));
+  return $this->view->render($response, 'home.twig', ['name' => $args[0]
+
+  ]);
   // echo "<pre>";
   // var_dump($results);
   // echo "</pre>";
@@ -31,7 +33,7 @@ $app->get('/', function($request, $response, $args) {
 // My test route using twig-view 
 $app->get('/hello/{name}', function ($request, $response, $args) {
   return $this->view->render($response, 'index.twig', [
-      'name' => $args['name']
+      'name' => $args
   ]);
 });
 
