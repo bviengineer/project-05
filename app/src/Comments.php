@@ -19,9 +19,11 @@ protected $db;
 				WHERE post_id = :postId";
 				// ORDER BY id";
 
-		$results = $this->db->prepare($sql); 
-		$results->bindParam('post_id', $postId, PDO::PARAM_INT);
-		$results->execute();
-		return $results->fetchAll(PDO::FETCH_ASSOC);
+	//	if(isset($args['id'])) { 
+			$results = $this->db->prepare($sql); 
+			$results->bindParam(':postId', $postId, PDO::PARAM_INT);
+			$results->execute();
+			return $results->fetchAll(PDO::FETCH_ASSOC);
+		//}
 	}
 }
