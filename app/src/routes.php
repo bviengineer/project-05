@@ -20,6 +20,22 @@ $app->get('/', function($request, $response, $args) {
   // Render results
   return $this->view->render($response, 'home.twig', $args);
 });
+// Detail page -> display a single post
+$app->get('/detail/{id}', function($request, $response, $args) {
+  
+  // Retrieve specified post from database 
+  $posts = new Posts($this->db);
+  $results = $posts->getFullPost($args['id']);
+
+  // Assign a key to the args array & store results of query
+  $args['entry'] = $results;
+  // echo "<pre>";
+  // var_dump($args);
+  // echo "</pre>";
+  
+  // Render results
+  return $this->view->render($response, 'detail.twig', $args);
+});
 
 // My test route using twig-view 
 $app->get('/hello/{name}', function ($request, $response, $args) {
