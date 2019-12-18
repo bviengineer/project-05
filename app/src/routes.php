@@ -35,7 +35,7 @@ $app->get('/post/{id}', function($request, $response, $args) {
   // echo "</pre>";
   
   // Render results
-  return $this->view->render($response, 'detail.twig', $args);
+  return $this->view->render($response, 'post.twig', $args);
 });
 
 // My test route using twig-view 
