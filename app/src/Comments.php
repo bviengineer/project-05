@@ -16,11 +16,11 @@ protected $db;
 	public function getComments($postId) {
 		$sql = "SELECT * 
 				FROM comments 
-				WHERE post_id = :id";
+				WHERE post_id = :postId";
 				// ORDER BY id";
 
 		$results = $this->db->prepare($sql); 
-		$results->bindParam('post_id', $postId);
+		$results->bindParam('post_id', $postId, PDO::PARAM_INT);
 		$results->execute();
 		return $results->fetchAll(PDO::FETCH_ASSOC);
 	}
