@@ -19,13 +19,18 @@ class Posts {
 		return $results->fetchAll(PDO::FETCH_ASSOC);
 	}
 	// Retrieve single post and associated comment(s)
-	public function getFullPost() {
-		$sql = "SELECT posts.title, posts.date, posts.body, comments.name, comments.body 
+	public function getFullPost($id) {
+		// $sql = "SELECT posts.title, posts.date, posts.body, comments.name, comments.body 
+    //       	FROM posts 
+		// 				LEFT OUTER JOIN comments
+		// 				WHERE comments.post_id = posts.id";
+
+		$sql = "SELECT posts.title, posts.date, posts.body 
           	FROM posts 
-						LEFT OUTER JOIN comments
-						WHERE comments.post_id = posts.id";
+						WHERE id = :id";
 
 		$results = $this->db->prepare($sql);
+		$results->bindParam('id', $id);
 		$results->execute();
 		return $results->fetchAll(PDO::FETCH_ASSOC);
 	}
