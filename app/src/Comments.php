@@ -17,13 +17,10 @@ protected $db;
 		$sql = "SELECT * 
 				FROM comments 
 				WHERE post_id = :postId";
-				// ORDER BY id";
-
-	//	if(isset($args['id'])) { 
+ 
 			$results = $this->db->prepare($sql); 
 			$results->bindParam(':postId', $postId, PDO::PARAM_INT);
 			$results->execute();
 			return $results->fetchAll(PDO::FETCH_ASSOC);
-		//}
 	}
 }
