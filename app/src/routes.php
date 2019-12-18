@@ -34,9 +34,9 @@ $app->get('/post/{id}', function($request, $response, $args) {
 
   // Assign a key to the args array & store results of query
   $args['post'] = $results;
-  $args['post'] = $args['post'][0];
+  // $args['post'] = $args['post'][0];
   // echo "<pre>";
-  // var_dump($args['entry']);
+  // var_dump($args['post']);
   // echo "</pre>";
   
   // Render results
