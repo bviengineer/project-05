@@ -16,20 +16,20 @@ $app->get('/', function($request, $response, $args) {
 
   // Assign a key to the args array & store results of query
   $args['posts'] = $results;
-  
+
   // Render results
   return $this->view->render($response, 'home.twig', $args);
 });
 // Detail page -> display a single post
-$app->get('/detail/{id}', function($request, $response, $args) {
+$app->get('/post/{id}', function($request, $response, $args) {
   
   // Retrieve specified post from database 
   $posts = new Posts($this->db);
   $results = $posts->getFullPost($args['id']);
 
   // Assign a key to the args array & store results of query
-  $args['entry'] = $results;
-  $args['entry'] = $args['entry'][0];
+  $args['post'] = $results;
+  $args['post'] = $args['post'][0];
   // echo "<pre>";
   // var_dump($args['entry']);
   // echo "</pre>";
