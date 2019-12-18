@@ -30,9 +30,9 @@ class Posts {
 						WHERE id = :id";
 
 		$results = $this->db->prepare($sql);
-		$results->bindParam('id', $id);
+		$results->bindParam(':id', $id, PDO::PARAM_INT);
 		$results->execute();
-		return $results->fetchAll(PDO::FETCH_ASSOC);
+		return $results->fetch(PDO::FETCH_ASSOC);
 	}
 	// Add a post to database
 	// public function addPost() {
