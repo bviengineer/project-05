@@ -29,8 +29,9 @@ $app->get('/detail/{id}', function($request, $response, $args) {
 
   // Assign a key to the args array & store results of query
   $args['entry'] = $results;
+  $args['entry'] = $args['entry'][0];
   // echo "<pre>";
-  // var_dump($args);
+  // var_dump($args['entry']);
   // echo "</pre>";
   
   // Render results
