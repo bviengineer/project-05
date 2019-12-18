@@ -27,6 +27,10 @@ $app->get('/post/{id}', function($request, $response, $args) {
   $post = new Posts($this->db);
   $results = $post->getFullPost($args['id']);
 
+  $comm = new Comments($this->db);
+  $postComm = $comm->getComments($args['id']);
+
+  var_dump($postComm);
 
   // Assign a key to the args array & store results of query
   $args['post'] = $results;
