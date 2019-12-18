@@ -30,17 +30,20 @@ $app->get('/post/{id}', function($request, $response, $args) {
   $comm = new Comments($this->db);
   $postComm = $comm->getComments($args['id']);
 
-  echo "<pre>";
-  var_dump($postComm);
-  echo "</pre>";
-
   // Assign a key to the args array & store results of query
   $args['post'] = $results;
   $args['comments'] = $postComm;
+
+  echo "<pre>";
+  var_dump($args['comments']);
+  echo "</pre>";
   //var_dump($args['id']);
   // $args['post'] = $args['post'][0];
   // echo "<pre>";
   // var_dump($args['post']);
+  // echo "</pre>";
+  // echo "<pre>";
+  // var_dump($args);
   // echo "</pre>";
   
   // Render results
