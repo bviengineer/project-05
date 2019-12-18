@@ -24,8 +24,9 @@ $app->get('/', function($request, $response, $args) {
 $app->get('/post/{id}', function($request, $response, $args) {
   
   // Retrieve specified post from database 
-  $posts = new Posts($this->db);
-  $results = $posts->getFullPost($args['id']);
+  $post = new Posts($this->db);
+  $results = $post->getFullPost($args['id']);
+
 
   // Assign a key to the args array & store results of query
   $args['post'] = $results;
