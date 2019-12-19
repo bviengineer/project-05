@@ -54,6 +54,15 @@ $app->get('/new', function($request, $response) {
   // Render page to add a post 
   return $this->view->render($response, 'new.twig');
 });
+// Add a post
+$app->post('/post/new', function($request, $response, $args) {
+  
+  // Retrieve specified post from database 
+  $post = new Posts($this->db);
+  $results = $post->addPost($title, $body);
+  
+  // Redirect to home page 
+  return $this->response->withStatus(200)->withHeader('Location', '/');
 
 // My test route using twig-view 
 $app->get('/hello/{name}', function ($request, $response, $args) {
