@@ -50,6 +50,11 @@ $app->get('/post/{id}', function($request, $response, $args) {
   return $this->view->render($response, 'post.twig', $args);
 });
 
+$app->get('/new', function($request, $response) {  
+  // Render page to add a post 
+  return $this->view->render($response, 'new.twig');
+});
+
 // My test route using twig-view 
 $app->get('/hello/{name}', function ($request, $response, $args) {
   return $this->view->render($response, 'index.twig', [
