@@ -30,17 +30,13 @@ class Posts {
 		return $results->fetch(PDO::FETCH_ASSOC);
 	}
 	// Add a post to database
-	// public function addPost() {
-	// 	include __DIR__ . "/../src/dbconnection.php";
-	// 	$sql = "INSERT INTO posts (title, date, body) VALUES(?, ?, ?, ?);
+	public function addPost($title, $body) {
+		$sql = "INSERT INTO posts (title, body) VALUES(:title, :body)";
 
-	// 	try {
-	// 		$results = $db->query($sql); 
-	// 	} catch (Exception $e) {
-	// 		echo $e->getMessage();
-	// 		return array();
-	// 	}
-	// 	return $results->fetchAll(PDO::FETCH_ASSOC);
-	// }
-
+		$results = $this->db->prepare($sql); 
+		$results->bindParam(':title', $title, PDO::PARAM_STR);
+		$results->bindParam(':body', $body, PDO::PARAM_STR);
+		$results->execute();
+		return true;
+	}
 }
