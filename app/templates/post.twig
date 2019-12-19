@@ -41,7 +41,13 @@
                         	<strong>{{item.name}}</strong>
                         	<time datetime="2016-01-31 1:00">January 31, 2016 at 1:00</time>
                         	<p> {{ item.body }} </p>
-                        	<hr>
+													<hr>
+												{% endfor %}
+											{% else %}
+												{% for item in comments %}
+													<strong>{{item.name}}</strong>
+													<time datetime="2016-01-31 1:00">January 31, 2016 at 1:00</time>
+													<p> {{ item.body }} </p>
 												{% endfor %}
 											{% endif %}
                     </div>
