@@ -49,7 +49,7 @@ $app->get('/post/{id}', function($request, $response, $args) {
   // Render results
   return $this->view->render($response, 'post.twig', $args);
 });
-
+// Route to page to add a new post
 $app->get('/new', function($request, $response) {  
   // Render page to add a post 
   return $this->view->render($response, 'new.twig');
