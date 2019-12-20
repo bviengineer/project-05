@@ -30,11 +30,12 @@ class Posts {
 		return $results->fetch(PDO::FETCH_ASSOC);
 	}
 	// Add a post to database
-	public function addPost($title, $body) {
-		$sql = "INSERT INTO posts (title, body) VALUES(:title, :body)";
+	public function addPost($title, $date, $body) {
+		$sql = "INSERT INTO posts (title, date, body) VALUES(:title, :date, :body)";
 
 		$results = $this->db->prepare($sql); 
 		$results->bindParam(':title', $title, PDO::PARAM_STR);
+		$results->bindParam(':date', $date, PDO::PARAM_STR);
 		$results->bindParam(':body', $body, PDO::PARAM_STR);
 		$results->execute();
 		return true;
