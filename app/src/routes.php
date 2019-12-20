@@ -59,12 +59,15 @@ $app->post('/post/new', function($request, $response, $args) {
   // Getting form data 
   $args = array_merge($args, $request->getParsedBody());
 
-  // Add post to database 
-  $post = new Posts($this->db);
-  $results = $post->addPost($title, $body);
+  if (!empty($args['title']) && !empty($args['body'])) {
+      // Add post to database 
+      $post = new Posts($this->db);
+      $results = $post->addPost($title, $body);
+  }
   
   // Redirect to home page 
   return $this->response->withStatus(200)->withHeader('Location', '/');
+  //return $this->view->render($response, 'new.twig', $args)
 });
 
 // My test route using twig-view 
