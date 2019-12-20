@@ -55,7 +55,7 @@ $app->get('/new', function($request, $response) {
   return $this->view->render($response, 'new.twig');
 });
 // Add a post
-$app->post('/new', function($request, $response, $args) {
+$app->post('/post/new', function($request, $response, $args) {
   // Getting form data 
   $args = array_merge($args, $request->getParsedBody());
 
@@ -67,6 +67,10 @@ $app->post('/new', function($request, $response, $args) {
       $post = new Posts($this->db);
       $results = $post->addPost($args['title'], $args['date'], $args['entry']);
   }
+
+  // Redirect to home page 
+  return $this->response->withStatus(200)->withHeader('Location', '/');
+  //return $this->view->render($response, 'new.twig', $args)
 });
   // Update a post
   $app->put('/post/edit', function($request, $response, $args) {
