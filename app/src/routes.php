@@ -67,6 +67,7 @@ $app->post('/new', function($request, $response, $args) {
       $post = new Posts($this->db);
       $results = $post->addPost($args['title'], $args['date'], $args['entry']);
   }
+});
   // Update a post
   $app->put('/post/edit', function($request, $response, $args) {
     // Getting form data 
