@@ -44,16 +44,23 @@ $app->post('/post/new', function($request, $response, $args) {
   //return $this->view->render($response, 'new.twig', $args)
 });
 // Route to edit a post page
-$app->get('/post/edit', function($request, $response, $args) {  
-  if (isset($_args['id'])) {
-    $args = array_merge($args, $request->getParsedBody());
-  }
+$app->get('/edit/{id}', function($request, $response, $args) {  
+  echo "<pre>";
   var_dump($args);
+  echo "</pre>";
+  
+  // $args = $request->getParsedBody();
+  // if (isset($_args['id'])) {
+  //   $args = array_merge($args, $request->getParsedBody());
+  // }
+  // echo "<pre>";
+  // var_dump($args);
+  // echo "</pre>";
   // Render page to add a post 
   //return $this->view->render($response, 'edit.twig', $args);
 });
 // Update a post
-$app->post('/post/edit', function($request, $response, $args) {
+$app->post('/edit/{id}', function($request, $response, $args) {
   // Getting form data 
   $args = array_merge($args, $request->getParsedBody());
 
@@ -68,10 +75,12 @@ $app->post('/post/edit', function($request, $response, $args) {
 
 // Redirect to home page 
 //return $this->response->withStatus(200)->withHeader('Location', '/');
-//return $this->view->render($response, 'new.twig', $args)
+return $this->view->render($response, 'edit.twig', $args);
 });
 // Detail page -> display a single post
 $app->get('/post/{id}', function($request, $response, $args) {
+
+  var_dump($args);
   
   // Retrieve specified post from database 
   $post = new Posts($this->db);
@@ -99,26 +108,25 @@ $app->get('/post/{id}', function($request, $response, $args) {
   // Render results
   return $this->view->render($response, 'post.twig', $args);
 });
+
+
 // My test route using twig-view 
 $app->get('/hello/{name}', function ($request, $response, $args) {
   return $this->view->render($response, 'index.twig', [
       'name' => $args
   ]);
 });
-
 // my test route 
 $app->get('/test/{method}', function($request, $response) {
     $method = $request->getMethod();
     return $method;
 });
-
 // my test db query
 $app->get('/comments', function() {
 	$comm = new Comments($this->db);
 	$results = $comm->getComments();
 	var_dump($results);
 });
-
 // Test route for all posts
 $app->get('/pm', function() {
   $fullPost = new Posts($this->db);  
