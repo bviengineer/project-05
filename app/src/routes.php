@@ -46,10 +46,10 @@ $app->post('/post/new', function($request, $response, $args) {
 // Route to edit a post page
 $app->get('/edit/{id}', function($request, $response, $args) {  
 
-  $this->logger->info("Slim-Skeleton '/edit/{id}' route");
-  echo "<pre>";
-  var_dump($args);
-  echo "</pre>";
+  // $this->logger->info("Slim-Skeleton '/edit/{id}' route");
+  // echo "<pre>";
+  // var_dump($args);
+  // echo "</pre>";
   
   // $args = $request->getParsedBody();
   // if (isset($_args['id'])) {
@@ -59,7 +59,7 @@ $app->get('/edit/{id}', function($request, $response, $args) {
   // var_dump($args);
   // echo "</pre>";
   // Render page to add a post 
-  //return $this->view->render($response, 'edit.twig', $args);
+  return $this->view->render($response, 'edit.twig', $args);
 });
 // Update a post
 $app->post('/edit/{id}', function($request, $response, $args) {
@@ -81,8 +81,6 @@ return $this->view->render($response, 'edit.twig', $args);
 });
 // Detail page -> display a single post
 $app->get('/post/{id}', function($request, $response, $args) {
-
-  var_dump($args);
   
   // Retrieve specified post from database 
   $post = new Posts($this->db);
