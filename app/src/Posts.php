@@ -40,4 +40,19 @@ class Posts {
 		$results->execute();
 		return true;
 	}
+	// Update/Put a post
+	public function updatePost($id, $title, $date, $body) {
+		$sql = "UPDATE posts 
+						SET title = :title, date = :date, body = :body
+						WHERE id = :id";
+
+		$results = $this->db->prepare($sql); 
+		$results->bindParam(':id', $id, PDO::PARAM_INT);
+		$results->bindParam(':title', $title, PDO::PARAM_STR);
+		$results->bindParam(':date', $date, PDO::PARAM_STR);
+		$results->bindParam(':body', $body, PDO::PARAM_STR);
+		$results->execute();
+		return true;
+	}
+
 }
