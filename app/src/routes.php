@@ -47,9 +47,9 @@ $app->post('/post/new', function($request, $response, $args) {
 $app->get('/edit/{id}', function($request, $response, $args) {  
 
   // $this->logger->info("Slim-Skeleton '/edit/{id}' route");
-  // echo "<pre>";
-  // var_dump($args);
-  // echo "</pre>";
+  echo "<pre>";
+  var_dump($args);
+  echo "</pre>";
   
   // $args = $request->getParsedBody();
   // if (isset($_args['id'])) {
@@ -81,7 +81,7 @@ return $this->view->render($response, 'edit.twig', $args);
 });
 // Detail page -> display a single post
 $app->get('/post/{id}', function($request, $response, $args) {
-  
+
   // Retrieve specified post from database 
   $post = new Posts($this->db);
   $results = $post->getFullPost($args['id']);
