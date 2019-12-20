@@ -67,9 +67,22 @@ $app->post('/new', function($request, $response, $args) {
       $post = new Posts($this->db);
       $results = $post->addPost($args['title'], $args['date'], $args['entry']);
   }
+  // Update a post
+  $app->put('/post/edit', function($request, $response, $args) {
+    // Getting form data 
+    $args = array_merge($args, $request->getParsedBody());
+  
+    echo "<pre>";
+    var_dump($args);
+    echo "</pre>";
+    //if (!empty($args['title']) && !empty($args['entry'])) { //validate date as well?
+        // Add post to database 
+      //  $post = new Posts($this->db);
+       // $results = $post->updatePost($args['id'], $args['title'], $args['date'], $args['entry']);
+    //}
   
   // Redirect to home page 
-  return $this->response->withStatus(200)->withHeader('Location', '/');
+  //return $this->response->withStatus(200)->withHeader('Location', '/');
   //return $this->view->render($response, 'new.twig', $args)
 });
 
