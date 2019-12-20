@@ -43,11 +43,12 @@ $app->post('/post/new', function($request, $response, $args) {
   return $this->response->withStatus(200)->withHeader('Location', '/');
   //return $this->view->render($response, 'new.twig', $args)
 });
-// Route to edit a post
+// Route to edit a post page
 $app->get('/post/edit', function($request, $response, $args) {  
-  $args = array_merge($args, $request->getParsedBody());
+  if (isset($_args['id'])) {
+    $args = array_merge($args, $request->getParsedBody());
+  }
   var_dump($args);
-
   // Render page to add a post 
   //return $this->view->render($response, 'edit.twig', $args);
 });
