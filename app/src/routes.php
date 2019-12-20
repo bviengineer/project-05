@@ -45,6 +45,8 @@ $app->post('/post/new', function($request, $response, $args) {
 });
 // Route to edit a post page
 $app->get('/edit/{id}', function($request, $response, $args) {  
+
+  $this->logger->info("Slim-Skeleton '/edit/{id}' route");
   echo "<pre>";
   var_dump($args);
   echo "</pre>";
