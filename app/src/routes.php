@@ -59,10 +59,13 @@ $app->post('/post/new', function($request, $response, $args) {
   // Getting form data 
   $args = array_merge($args, $request->getParsedBody());
 
-  if (!empty($args['title']) && !empty($args['body'])) {
+  // echo "<pre>";
+  // var_dump($args);
+  // echo "</pre>";
+  if (!empty($args['title']) && !empty($args['entry'])) {
       // Add post to database 
       $post = new Posts($this->db);
-      $results = $post->addPost($title, $body);
+      $results = $post->addPost($args['title'], $args['entry']);
   }
   
   // Redirect to home page 
