@@ -55,7 +55,7 @@ $app->get('/new', function($request, $response) {
   return $this->view->render($response, 'new.twig');
 });
 // Add a post
-$app->post('/post/new', function($request, $response, $args) {
+$app->post('/new', function($request, $response, $args) {
   // Getting form data 
   $args = array_merge($args, $request->getParsedBody());
 
