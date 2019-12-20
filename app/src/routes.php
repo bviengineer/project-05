@@ -62,10 +62,10 @@ $app->post('/post/new', function($request, $response, $args) {
   // echo "<pre>";
   // var_dump($args);
   // echo "</pre>";
-  if (!empty($args['title']) && !empty($args['entry'])) {
+  if (!empty($args['title']) && !empty($args['entry'])) { //validate date as well?
       // Add post to database 
       $post = new Posts($this->db);
-      $results = $post->addPost($args['title'], $args['entry']);
+      $results = $post->addPost($args['title'], $args['date'], $args['entry']);
   }
   
   // Redirect to home page 
