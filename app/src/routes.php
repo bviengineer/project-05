@@ -20,37 +20,8 @@ $app->get('/', function($request, $response, $args) {
   // Render results
   return $this->view->render($response, 'home.twig', $args);
 });
-// Detail page -> display a single post
-$app->get('/post/{id}', function($request, $response, $args) {
-  
-  // Retrieve specified post from database 
-  $post = new Posts($this->db);
-  $results = $post->getFullPost($args['id']);
-
-  $comm = new Comments($this->db);
-  $postComm = $comm->getComments($args['id']);
-
-  // Assign a key to the args array & store results of query
-  $args['post'] = $results;
-  $args['comments'] = $postComm;
-
-  echo "<pre>";
-  var_dump($args['comments']);
-  echo "</pre>";
-  //var_dump($args['id']);
-  // $args['post'] = $args['post'][0];
-  // echo "<pre>";
-  // var_dump($args['post']);
-  // echo "</pre>";
-  // echo "<pre>";
-  // var_dump($args);
-  // echo "</pre>";
-  
-  // Render results
-  return $this->view->render($response, 'post.twig', $args);
-});
-// Route to page to add a new post
-$app->get('/new', function($request, $response) {  
+// Route to the new entry/post page 
+$app->get('/post/new', function($request, $response) {  
   // Render page to add a post 
   return $this->view->render($response, 'new.twig');
 });
@@ -72,8 +43,15 @@ $app->post('/post/new', function($request, $response, $args) {
   return $this->response->withStatus(200)->withHeader('Location', '/');
   //return $this->view->render($response, 'new.twig', $args)
 });
+// Route to edit a post
+$app->get('/post/edit', function($request, $response, $args) {  
+  var_dump($args);
+
+  // Render page to add a post 
+  return $this->view->render($response, 'edit.twig', $args);
+});
 // Update a post
-$app->put('/post/edit', function($request, $response, $args) {
+$app->post('/post/edit', function($request, $response, $args) {
   // Getting form data 
   $args = array_merge($args, $request->getParsedBody());
 
@@ -90,7 +68,35 @@ $app->put('/post/edit', function($request, $response, $args) {
 //return $this->response->withStatus(200)->withHeader('Location', '/');
 //return $this->view->render($response, 'new.twig', $args)
 });
+// Detail page -> display a single post
+$app->get('/post/{id}', function($request, $response, $args) {
+  
+  // Retrieve specified post from database 
+  $post = new Posts($this->db);
+  $results = $post->getFullPost($args['id']);
 
+  $comm = new Comments($this->db);
+  $postComm = $comm->getComments($args['id']);
+
+  // Assign a key to the args array & store results of query
+  $args['post'] = $results;
+  $args['comments'] = $postComm;
+
+  // echo "<pre>";
+  // var_dump($args['comments']);
+  // echo "</pre>";
+  //var_dump($args['id']);
+  // $args['post'] = $args['post'][0];
+  // echo "<pre>";
+  // var_dump($args['post']);
+  // echo "</pre>";
+  // echo "<pre>";
+  // var_dump($args);
+  // echo "</pre>";
+  
+  // Render results
+  return $this->view->render($response, 'post.twig', $args);
+});
 // My test route using twig-view 
 $app->get('/hello/{name}', function ($request, $response, $args) {
   return $this->view->render($response, 'index.twig', [
