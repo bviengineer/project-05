@@ -20,7 +20,7 @@ class Posts {
 	}
 	// Retrieve single post and associated comment(s)
 	public function getFullPost($id) {
-		$sql = "SELECT posts.title, posts.date, posts.body 
+		$sql = "SELECT posts.id, posts.title, posts.date, posts.body 
           	FROM posts 
 						WHERE id = :id";
 
