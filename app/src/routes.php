@@ -45,10 +45,11 @@ $app->post('/post/new', function($request, $response, $args) {
 });
 // Route to edit a post
 $app->get('/post/edit', function($request, $response, $args) {  
+  $args = array_merge($args, $request->getParsedBody());
   var_dump($args);
 
   // Render page to add a post 
-  return $this->view->render($response, 'edit.twig', $args);
+  //return $this->view->render($response, 'edit.twig', $args);
 });
 // Update a post
 $app->post('/post/edit', function($request, $response, $args) {
