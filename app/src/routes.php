@@ -44,25 +44,22 @@ $app->post('/post/new', function($request, $response, $args) {
   //return $this->view->render($response, 'new.twig', $args)
 });
 // Route to edit a post page
-$app->get('/edit/{id}', function($request, $response, $args) {  
-
-  // $this->logger->info("Slim-Skeleton '/edit/{id}' route");
+$app->get('/edit/{id}', function($request, $response, $args) {
+  
+  // retrieve post to be edited 
+  $post = new Posts($this->db);
+  $results = $post->getFullPost($args['id']);
+  $args['post'] = $results;
+  
   echo "<pre>";
-  var_dump($args);
+  var_dump($args['post']);
   echo "</pre>";
   
-  // $args = $request->getParsedBody();
-  // if (isset($_args['id'])) {
-  //   $args = array_merge($args, $request->getParsedBody());
-  // }
-  // echo "<pre>";
-  // var_dump($args);
-  // echo "</pre>";
-  // Render page to add a post 
   return $this->view->render($response, 'edit.twig', $args);
 });
 // Update a post
 $app->post('/edit/{id}', function($request, $response, $args) {
+  
   // Getting form data 
   $args = array_merge($args, $request->getParsedBody());
 
