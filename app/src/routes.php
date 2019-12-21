@@ -114,7 +114,6 @@ $app->post('/post/{id}', function($request, $response, $args) {
   $addComm = $comm->addComment($args['name'], $args['comment'], $args['id']);
 
   // Render results
-  //return $this->view->render($response, 'post.twig', $args);
   return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id'] );
 });
 
