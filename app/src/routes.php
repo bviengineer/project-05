@@ -78,11 +78,10 @@ $app->post('/edit/{id}', function($request, $response, $args) {
 });
 // Detail page -> display a single post
 $app->get('/post/{id}', function($request, $response, $args) {
-
+  $method = $request->getMethod();
   // Retrieve specified post from database 
   $post = new Posts($this->db);
   $results = $post->getFullPost($args['id']);
-
   $comm = new Comments($this->db);
   $postComm = $comm->getComments($args['id']);
 
@@ -90,6 +89,15 @@ $app->get('/post/{id}', function($request, $response, $args) {
   $args['post'] = $results;
   $args['comments'] = $postComm;
 
+  if ($method == 'GET' && !empty($args)) {
+    // $comm = new Comments($this->db);
+    // $addComm = $comm->addComment($args['name'])
+    // var_dump($args['comment']);
+    // var_dump($args['name']);
+    echo "<pre>";
+    var_dump($args);
+    echo "<pre>";
+  }
   // echo "<pre>";
   // var_dump($args['comments']);
   // echo "</pre>";
@@ -101,7 +109,6 @@ $app->get('/post/{id}', function($request, $response, $args) {
   // echo "<pre>";
   // var_dump($args);
   // echo "</pre>";
-  
   // Render results
   return $this->view->render($response, 'post.twig', $args);
 });
