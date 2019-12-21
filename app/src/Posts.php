@@ -54,5 +54,12 @@ class Posts {
 		$results->execute();
 		return true;
 	}
+	// Delete a post
+	public function deletePost($id) {
+		$results = $this->db->prepare("DELETE FROM posts WHERE id = :id"); 
+		$results->bindParam(':id', $id, PDO::PARAM_INT);
+		$results->execute();
+		return true;
+	}
 
 }
