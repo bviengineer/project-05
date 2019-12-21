@@ -49,16 +49,21 @@
 													<time datetime="2016-01-31 1:00">January 31, 2016 at 1:00</time>
 													<p> {{ item.body }} </p>
 												{% endfor %}
-											{% endif %}
+											{# {% endif %} #}
                     </div>
                     <div class="new-comment">
-                        <form>
+											{# {% for comment in comments %} #}
+												<form action="/post/{{ comment.id }}" method="POST">
+											{% endfor %}
                               <label for="name"> Name</label>
                               <input type="text" name="name"><br>
                               <label for="comment">Comment</label>
                               <textarea rows="5" name="comment"></textarea>
-                              <input type="submit" value="Post Comment" class="button">
-                        </form>
+															<input type="submit" value="Post Comment" name="comment" class="button">
+												</form>
+												<form action="" method="POST">
+													<input type="submit" value="Delete Post" name="delete" class="button">
+												</form>
                     </div>
             </div>
         </section>
