@@ -24,10 +24,9 @@ protected $db;
 			return $results->fetchAll(PDO::FETCH_ASSOC);
 	}
 	// Add a comment
-	public function addComment($name, $comm, $post_id) {
+	public function addComment($name, $comm, $postId) {
 		$sql = "INSERT INTO comments (name, body, post_id) 
-				VALUES(:name, :body, :post_id) 
-				WHERE post_id = :postId"; 
+				VALUES(:name, :body, :postId)"; 
 				
 		$results = $this->db->prepare($sql);
 		$results->bindParam(':name', $name, PDO::PARAM_STR);
