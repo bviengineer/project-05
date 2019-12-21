@@ -51,9 +51,9 @@ $app->get('/edit/{id}', function($request, $response, $args) {
   $results = $post->getFullPost($args['id']);
   $args['post'] = $results;
   
-  echo "<pre>";
-  var_dump($args['post']);
-  echo "</pre>";
+  // echo "<pre>";
+  // var_dump($args['post']);
+  // echo "</pre>";
   
   return $this->view->render($response, 'edit.twig', $args);
 });
@@ -66,15 +66,15 @@ $app->post('/edit/{id}', function($request, $response, $args) {
   echo "<pre>";
   var_dump($args);
   echo "</pre>";
-  //if (!empty($args['title']) && !empty($args['entry'])) { //validate date as well?
-      // Add post to database 
-    //  $post = new Posts($this->db);
-      // $results = $post->updatePost($args['id'], $args['title'], $args['date'], $args['entry']);
-  //}
 
-// Redirect to home page 
-//return $this->response->withStatus(200)->withHeader('Location', '/');
-return $this->view->render($response, 'edit.twig', $args);
+  if (!empty($args['title']) && !empty($args['entry'])) { //validate date as well?
+      // Update post in database 
+      $post = new Posts($this->db);
+      $results = $post->updatePost($args['id'], $args['title'], $args['date'], $args['entry']);
+  }
+  // Redirect to post 
+  return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id'] );
+  //return $this->view->render($response, 'edit.twig', $args);
 });
 // Detail page -> display a single post
 $app->get('/post/{id}', function($request, $response, $args) {
