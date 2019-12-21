@@ -40,7 +40,7 @@ class Posts {
 		$results->execute();
 		return true;
 	}
-	// Update/Put a post
+	// Update a post
 	public function updatePost($id, $title, $date, $body) {
 		$sql = "UPDATE posts 
 						SET title = :title, date = :date, body = :body
