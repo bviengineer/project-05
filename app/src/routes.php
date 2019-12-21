@@ -110,8 +110,8 @@ $app->post('/post/{id}', function($request, $response, $args) {
   echo "<pre>";
   var_dump($args);
   echo "</pre>";
-  $getcomm = new Comments($this->db);
-  $addComm = $getcomm->addComment($args['name'], $args['comment'], $args['post_id']);
+  $comm = new Comments($this->db);
+  $addComm = $comm->addComment($args['name'], $args['comment'], $args['id']);
 
   // Render results
   //return $this->view->render($response, 'post.twig', $args);
