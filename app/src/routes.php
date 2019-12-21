@@ -100,7 +100,16 @@ $app->post('/post/{id}', function($request, $response, $args) {
 
 // Delete a post its comments
 $app->post('/delete/{id}', function($request, $response, $args) {
-  
+  // Delete specified post
+  $post = new Posts($this->db);
+  $deletePost = $post->deletePost($args['id']);
+
+  // Delete comment for specified post 
+  $comm = new Comments($this->db);
+  $deleteComm = $comm->deleteComment($args['id']);
+
+  // Redirect to home page 
+  return $this->response->withStatus(200)->withHeader('Location', '/');
 });
 
 // My test route using twig-view 
