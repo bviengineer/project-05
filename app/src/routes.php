@@ -98,6 +98,11 @@ $app->post('/post/{id}', function($request, $response, $args) {
   return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id'] );
 });
 
+// Delete a post its comments
+$app->post('/delete/{id}', function($request, $response, $args) {
+  
+});
+
 // My test route using twig-view 
 $app->get('/hello/{name}', function ($request, $response, $args) {
   return $this->view->render($response, 'index.twig', [
