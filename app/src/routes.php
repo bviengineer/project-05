@@ -9,7 +9,6 @@ use App\Comments;
 
 // Home page -> display all posts
 $app->get('/', function($request, $response, $args) {
-  
   // Retrieve all posts from database 
   $posts = new Posts($this->db);
   $results = $posts->getAllPosts();
@@ -17,66 +16,58 @@ $app->get('/', function($request, $response, $args) {
   // Assign a key to the args array & store results of query
   $args['posts'] = $results;
 
-  // Render results
+  // Render results to home page
   return $this->view->render($response, 'home.twig', $args);
 });
-// Route to the new entry/post page 
+
+// Display the new entry/post page 
 $app->get('/post/new', function($request, $response) {  
-  // Render page to add a post 
   return $this->view->render($response, 'new.twig');
 });
-// Add a post
+
+// Add a new post
 $app->post('/post/new', function($request, $response, $args) {
-  // Getting form data 
+  // Getting form data with post details  
   $args = array_merge($args, $request->getParsedBody());
 
-  // echo "<pre>";
-  // var_dump($args);
-  // echo "</pre>";
   if (!empty($args['title']) && !empty($args['entry'])) { //validate date as well?
-      // Add post to database 
-      $post = new Posts($this->db);
-      $results = $post->addPost($args['title'], $args['date'], $args['entry']);
+    // Add post to database 
+    $post = new Posts($this->db);
+    $results = $post->addPost($args['title'], $args['date'], $args['entry']);
   }
-
   // Redirect to home page 
   return $this->response->withStatus(200)->withHeader('Location', '/');
-  //return $this->view->render($response, 'new.twig', $args)
 });
-// Route to edit a post page
+
+// View post to be edited in edit mode (field values can be changed)
 $app->get('/edit/{id}', function($request, $response, $args) {
-  
   // retrieve post to be edited 
   $post = new Posts($this->db);
   $results = $post->getFullPost($args['id']);
+
+  // Store the results of returned post
   $args['post'] = $results;
   
-  // echo "<pre>";
-  // var_dump($args['post']);
-  // echo "</pre>";
-  
+  // Display the post
   return $this->view->render($response, 'edit.twig', $args);
 });
+
 // Update a post
 $app->post('/edit/{id}', function($request, $response, $args) {
-  
-  // Getting form data 
+  // Getting form data with updates 
   $args = array_merge($args, $request->getParsedBody());
 
-  echo "<pre>";
-  var_dump($args);
-  echo "</pre>";
-
+  // Verifing completed fields
   if (!empty($args['title']) && !empty($args['entry'])) { //validate date as well?
       // Update post in database 
       $post = new Posts($this->db);
       $results = $post->updatePost($args['id'], $args['title'], $args['date'], $args['entry']);
   }
-  // Redirect to post 
+  // View updated post 
   return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id'] );
-  //return $this->view->render($response, 'edit.twig', $args);
 });
-// Detail page -> display a single post
+
+// Display a single post
 $app->get('/post/{id}', function($request, $response, $args) {
   // Retrieve specified post from database 
   $post = new Posts($this->db);
@@ -86,37 +77,26 @@ $app->get('/post/{id}', function($request, $response, $args) {
   $comm = new Comments($this->db);
   $postComm = $comm->getComments($args['id']);
 
-  // Assign a key to the args array & store results of query
+  // Assign a keys to the args array & store results of queries
   $args['post'] = $results;
   $args['comments'] = $postComm;
 
-  // echo "<pre>";
-  // var_dump($args['comments']);
-  // echo "</pre>";
-  
-  // echo "<pre>";
-  // var_dump($args['post']);
-  // echo "</pre>";
-  // echo "<pre>";
-  // var_dump($args);
-  // echo "</pre>";
-  // Render results
+  // View post & related comments
   return $this->view->render($response, 'post.twig', $args);
 });
-// Add comment to a post
+
+// Add comment to a specific post
 $app->post('/post/{id}', function($request, $response, $args) {
+  // Getting comment sent for posting
   $args = array_merge($args, $request->getParsedBody());
 
-  echo "<pre>";
-  var_dump($args);
-  echo "</pre>";
+  // Add comment to commments table 
   $comm = new Comments($this->db);
   $addComm = $comm->addComment($args['name'], $args['comment'], $args['id']);
 
-  // Render results
+  // Display post with added comment
   return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id'] );
 });
-
 
 // My test route using twig-view 
 $app->get('/hello/{name}', function ($request, $response, $args) {
