@@ -89,15 +89,6 @@ $app->get('/post/{id}', function($request, $response, $args) {
   $args['post'] = $results;
   $args['comments'] = $postComm;
 
-  if ($method == 'GET' && !empty($args)) {
-    // $comm = new Comments($this->db);
-    // $addComm = $comm->addComment($args['name'])
-    // var_dump($args['comment']);
-    // var_dump($args['name']);
-    echo "<pre>";
-    var_dump($args);
-    echo "<pre>";
-  }
   // echo "<pre>";
   // var_dump($args['comments']);
   // echo "</pre>";
@@ -111,6 +102,20 @@ $app->get('/post/{id}', function($request, $response, $args) {
   // echo "</pre>";
   // Render results
   return $this->view->render($response, 'post.twig', $args);
+});
+// Add comment to a post
+$app->post('/post/{id}', function($request, $response, $args) {
+  $args = array_merge($args, $request->getParsedBody());
+
+  echo "<pre>";
+  var_dump($args);
+  echo "</pre>";
+  $getcomm = new Comments($this->db);
+  $addComm = $getcomm->addComment($args['name'], $args['comment'], $args['post_id']);
+
+  // Render results
+  //return $this->view->render($response, 'post.twig', $args);
+  return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id'] );
 });
 
 
