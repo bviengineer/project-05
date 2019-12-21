@@ -78,10 +78,11 @@ $app->post('/edit/{id}', function($request, $response, $args) {
 });
 // Detail page -> display a single post
 $app->get('/post/{id}', function($request, $response, $args) {
-  $method = $request->getMethod();
   // Retrieve specified post from database 
   $post = new Posts($this->db);
   $results = $post->getFullPost($args['id']);
+
+  // Retrieve related comment(s) 
   $comm = new Comments($this->db);
   $postComm = $comm->getComments($args['id']);
 
@@ -92,8 +93,7 @@ $app->get('/post/{id}', function($request, $response, $args) {
   // echo "<pre>";
   // var_dump($args['comments']);
   // echo "</pre>";
-  //var_dump($args['id']);
-  // $args['post'] = $args['post'][0];
+  
   // echo "<pre>";
   // var_dump($args['post']);
   // echo "</pre>";
