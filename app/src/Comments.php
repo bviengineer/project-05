@@ -35,4 +35,11 @@ protected $db;
 		$results->execute();
 		return true;
 	}
+	// Delete a comment 
+	public function deleteComment($postId) {
+		$results = $this->db->prepare("DELETE FROM comments WHERE post_id = :postId"); 
+		$results->bindParam(':postId', $postId, PDO::PARAM_INT);
+		$results->execute();
+		return true;
+	}
 }
