@@ -20,7 +20,7 @@ $app->get('/', function($request, $response, $args) {
   return $this->view->render($response, 'home.twig', $args);
 });
 
-// Display the new entry/post page 
+// Display the blank new entry/post form
 $app->get('/post/new', function($request, $response) {  
   return $this->view->render($response, 'new.twig');
 });
