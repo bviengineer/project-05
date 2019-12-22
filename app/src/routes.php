@@ -2,6 +2,7 @@
 // Useage of model classes 
 use App\Posts;
 use App\Comments;
+use App\Tags;
 
 /**************************************
   Routes
