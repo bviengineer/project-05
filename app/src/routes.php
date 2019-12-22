@@ -98,13 +98,20 @@ $app->get('/post/{id}', function($request, $response, $args) {
 $app->post('/post/{id}', function($request, $response, $args) {
   // Getting comment sent for posting
   $args = array_merge($args, $request->getParsedBody());
+  
+  $dateArray = explode("/", $args['date']); 
+  $year = $dateArray[2];
+  $month =  date('F', $dateArray[0]);
+  $day = $dateArray[1];
+  $date = $month . " " . $day . ", " . $year;
+  $args['date'] = $date;
 
   // Add comment to commments table 
   $comm = new Comments($this->db);
-  $addComm = $comm->addComment($args['name'], $args['comment'], $args['id']);
+  $addComm = $comm->addComment($args['name'], $args['comment'], $args['id'], $args['date']);
 
   // Display post with added comment
-  return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id'] );
+  return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id']);
 });
 
 // Delete a post its comments
