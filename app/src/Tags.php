@@ -12,4 +12,9 @@ class Tags {
 	public function __construct(\PDO $db) {
 		$this->db = $db; 
 	}
+	public function getTags() {
+		$results = $this->db->prepare("SELECT * FROM tags ORDER BY id"); 
+		$results->execute();
+		return $results->fetchAll(PDO::FETCH_ASSOC);
+	}
 }
