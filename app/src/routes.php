@@ -44,11 +44,8 @@ $app->post('/post/new', function($request, $response, $args) {
       $post = new Posts($this->db);
       $results = $post->addPost($args['title'], $args['date'], $args['entry']);
   }  
-  // echo "<pre>";
-  // var_dump($args);
-  // echo "</pre>";
   // Redirect to home page 
-  //return $this->response->withStatus(200)->withHeader('Location', '/');
+  return $this->response->withStatus(200)->withHeader('Location', '/');
 });
 
 // View post to be edited in edit mode (field values can be changed)
