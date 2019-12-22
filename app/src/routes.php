@@ -129,6 +129,17 @@ $app->post('/delete/{id}', function($request, $response, $args) {
   return $this->response->withStatus(200)->withHeader('Location', '/');
 });
 
+// Test of tags retieval 
+$app->get('/tags', function($request, $response, $args) {
+
+  $tags = new Tags($this->db);
+  $myTags = $tags->getTags();
+  $result = $myTags();
+
+  var_dump($args);
+
+});
+
 // My test route using twig-view 
 $app->get('/hello/{name}', function ($request, $response, $args) {
   return $this->view->render($response, 'index.twig', [
