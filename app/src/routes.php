@@ -29,8 +29,15 @@ $app->get('/post/new', function($request, $response) {
 $app->post('/post/new', function($request, $response, $args) {
   // Getting form data with post details  
   $args = array_merge($args, $request->getParsedBody());
-  // Format of date 
-  $args['date'] = date('F d, Y', $args['date']);
+
+  $dateArray = explode("-", $args['date']) ;
+  $year = $dateArray[0];
+  $month = date('l', $dateArray[1]);
+  $day = $dateArray[2];
+   //$args['date'] = date('F d, Y', $args['date']);
+  //date('F d, Y', strtotime($single_entry['date']))
+  $date = $month . " " . $day . ", " . $year;
+  $args['date'] = $date;
 
   // year, month, day
   if (!empty($args['title']) && !empty($args['date']) && !empty($args['entry'])) { //validate date as well?
