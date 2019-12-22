@@ -28,4 +28,11 @@ class PostsTags {
 		$results->execute();
 		return true;
     }
+    // Delete tag(s) for a given post 
+	public function deleteTags($postId) {
+		$results = $this->db->prepare("DELETE FROM posts_tags WHERE post_id = :postId"); 
+		$results->bindParam(':postId', $postId, PDO::PARAM_INT);
+		$results->execute();
+		return true;
+	}
 }
