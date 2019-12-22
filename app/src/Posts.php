@@ -29,6 +29,12 @@ class Posts {
 		$results->execute();
 		return $results->fetch(PDO::FETCH_ASSOC);
 	}
+	// Get most recent post
+	public function getRecentPost(){
+		$results = $db->prepare("SELECT id FROM posts ORDER BY id DESC LIMIT 1");
+		$results = $db->execute();
+		return $results->fetch(PDO::FETCH_ASSOC);
+	}
 	// Add a post to database
 	public function addPost($title, $date, $body) {
 		$sql = "INSERT INTO posts (title, date, body) VALUES(:title, :date, :body)";
