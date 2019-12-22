@@ -49,13 +49,14 @@ $app->post('/post/new', function($request, $response, $args) {
 
       //Add post & tag ids to junction table
       if (!empty($args['tags'])) {
-          $postId = new Posts($this->db);
-          $recentPostId = $postId->getRecentPost();
+          $getRecentPost = new Posts($this->db);
+          $recentPost = $getRecentPost->getRecentPost();
+          $postId = $recentPost['id'];
 
         foreach ($args['tags'] as $tagId) {
           $tagEntries = new PostsTags($this->db);
-          $insertTags = $tagEntries->addTags($recentPostId, $tagId);
-        } 
+          $insertTags = $tagEntries->addTags($postId, $tagId);
+        } // end foreach 
       } // end if
   }
   // Redirect to home page 
