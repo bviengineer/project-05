@@ -32,6 +32,7 @@ $app->post('/post/new', function($request, $response, $args) {
   // Getting form data with post details  
   $args = array_merge($args, $request->getParsedBody());
 
+  // Date conversion
   $dateArray = explode("/", $args['date']); 
   $year = $dateArray[2];
   $month =  date('F', $dateArray[0]);
@@ -40,12 +41,32 @@ $app->post('/post/new', function($request, $response, $args) {
   $args['date'] = $date;
   //$args['date'] = date('F d, Y', $args['date']);
 
-  // year, month, day
-  if (!empty($args['title']) && !empty($args['date']) && !empty($args['entry'])) { //validate date as well?
+  // Add post
+  if (!empty($args['title']) && !empty($args['date']) && !empty($args['entry'])) {
       // Add post to database 
       $post = new Posts($this->db);
       $results = $post->addPost($args['title'], $args['date'], $args['entry']);
-  }  
+  }
+  
+  // Add tags to junction table if any
+  if (!empty($args['tags'])) {
+      $postId = new Posts($this->db);
+      $recentPostId = $postId->getRecentPost();
+    
+      foreach ($args['tags'] as $tagId) {
+      $tagEntries = new PostsTags($this->db);
+      $insertTags = $tagEntries->addTags($recentPostId, $tagId);
+    } 
+  } // end if
+
+  // echo "<pre>";
+  // var_dump($args);
+  // echo "</pre>";
+
+  // echo "<pre>";
+  // var_dump($getTags);
+  // echo "</pre>";
+
   // Redirect to home page 
   return $this->response->withStatus(200)->withHeader('Location', '/');
 });
