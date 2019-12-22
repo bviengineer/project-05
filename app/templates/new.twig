@@ -28,7 +28,12 @@
 												<label for="Date"></label>
 												<input type="hidden" name="date" value={{ "now"|date("m/d/Y") }}>
                         <label for="entry">Entry</label>
-                        <textarea rows="5" name="entry"></textarea>
+												<textarea rows="5" name="entry"></textarea>
+												<input type="checkbox" name="tags[]" value="1">Technology<br>
+												<input type="checkbox" name="tags[]" value="2">Travel<br>
+												<input type="checkbox" name="tags[]" value="3">Personal<br>
+												<input type="checkbox" name="tags[]" value="4">Other<br>
+												<input type="checkbox" name="tags[]" value="5">Health and Wellness<br>
                         <input type="submit" value="Publish Entry" class="button">
                         <a href="/" class="button button-secondary">Cancel</a>
                     </form>
