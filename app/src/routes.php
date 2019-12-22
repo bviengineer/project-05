@@ -35,7 +35,6 @@ $app->post('/post/new', function($request, $response, $args) {
   $month = date('l', $dateArray[1]);
   $day = $dateArray[2];
    //$args['date'] = date('F d, Y', $args['date']);
-  //date('F d, Y', strtotime($single_entry['date']))
   $date = $month . " " . $day . ", " . $year;
   $args['date'] = $date;
 
