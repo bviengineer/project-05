@@ -32,7 +32,10 @@
                         <textarea rows="5" name="entry">{{ post.body }}</textarea>
                         <input type="submit" value="Save Entry" class="button">
                         <a href="/post/{{ post.id }}" class="button button-secondary">Cancel</a>
-                    </form>
+										</form>
+										<form action="/delete/{{ post.id}}" method="POST">
+											<input type="submit" value="Delete Post" name="delete" class="button">
+										</form>
                 </div>
             </div>
         </section>
