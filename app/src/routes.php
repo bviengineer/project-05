@@ -101,12 +101,30 @@ $app->get('/post/{id}', function($request, $response, $args) {
   $comm = new Comments($this->db);
   $postComm = $comm->getComments($args['id']);
 
+  // Retrieve tag id(s) for a specified post
+  $getTagId = new PostsTags($this->db);
+  $tagIds = $getTagId->getTags($args['id']);
+  $args['tagIds'] = $tagIds;
+
+  // Retrieve related tag(s) name(s)
+  if (!empty($args['tadIds'])) {
+  foreach ($args['tagIds'] as $ids) {
+    $getTagName = new Tags($this->db);
+    $tagName = $getTagName->getTags($ids);
+    
+    //array_push($args['tags'], $tagName);
+  }
+}
   // Assign a keys to the args array & store results of queries
   $args['post'] = $results;
   $args['comments'] = $postComm;
 
+  echo "<pre>";
+  var_dump($args);
+  echo "</pre>";
+
   // View post & related comments
-  return $this->view->render($response, 'post.twig', $args);
+  //return $this->view->render($response, 'post.twig', $args);
 });
 
 // Add comment to a specific post
@@ -129,13 +147,13 @@ $app->post('/post/{id}', function($request, $response, $args) {
   return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id']);
 });
 
-// Delete a post its comments
+// Delete a post, its comments & tags
 $app->post('/delete/{id}', function($request, $response, $args) {
   // Delete specified post
   $post = new Posts($this->db);
   $deletePost = $post->deletePost($args['id']);
 
-  // Delete comment for specified post 
+  // Delete comment(s) for specified post 
   $comm = new Comments($this->db);
   $deleteComm = $comm->deleteComment($args['id']);
 
@@ -147,7 +165,9 @@ $app->post('/delete/{id}', function($request, $response, $args) {
   return $this->response->withStatus(200)->withHeader('Location', '/');
 });
 
-// Test of tags retieval 
+
+
+// Test of tags retrieval 
 $app->get('/tags', function($request, $response, $args) {
   $tags = new Tags($this->db);
   $results = $tags->getTags();
