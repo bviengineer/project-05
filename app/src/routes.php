@@ -139,6 +139,10 @@ $app->post('/delete/{id}', function($request, $response, $args) {
   $comm = new Comments($this->db);
   $deleteComm = $comm->deleteComment($args['id']);
 
+  // Delete tag(s) for specified post 
+  $postsTags = new PostsTags($this->db);
+  $deleteTags = $postsTags->deleteTags($args['id']);
+
   // Redirect to home page 
   return $this->response->withStatus(200)->withHeader('Location', '/');
 });
