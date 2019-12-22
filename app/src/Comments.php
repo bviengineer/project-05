@@ -24,14 +24,15 @@ protected $db;
 			return $results->fetchAll(PDO::FETCH_ASSOC);
 	}
 	// Add a comment
-	public function addComment($name, $comm, $postId) {
-		$sql = "INSERT INTO comments (name, body, post_id) 
-				VALUES(:name, :body, :postId)"; 
+	public function addComment($name, $comm, $postId, $date) {
+		$sql = "INSERT INTO comments (name, body, post_id, date) 
+				VALUES(:name, :body, :postId, :date)"; 
 				
 		$results = $this->db->prepare($sql);
 		$results->bindParam(':name', $name, PDO::PARAM_STR);
 		$results->bindParam(':body', $comm, PDO::PARAM_STR);
 		$results->bindParam(':postId', $postId, PDO::PARAM_INT);
+		$results->bindParam(':date', $date, PDO::PARAM_STR);
 		$results->execute();
 		return true;
 	}
