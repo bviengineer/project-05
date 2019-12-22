@@ -30,13 +30,13 @@ $app->post('/post/new', function($request, $response, $args) {
   // Getting form data with post details  
   $args = array_merge($args, $request->getParsedBody());
 
-  $dateArray = explode("-", $args['date']) ;
-  $year = $dateArray[0];
-  $month =  date('F', $dateArray[1]);
-  $day = $dateArray[2];
-   //$args['date'] = date('F d, Y', $args['date']);
+  $dateArray = explode("/", $args['date']); 
+  $year = $dateArray[2];
+  $month =  date('F', $dateArray[0]);
+  $day = $dateArray[1];
   $date = $month . " " . $day . ", " . $year;
   $args['date'] = $date;
+  //$args['date'] = date('F d, Y', $args['date']);
 
   // year, month, day
   if (!empty($args['title']) && !empty($args['date']) && !empty($args['entry'])) { //validate date as well?
