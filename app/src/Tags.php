@@ -12,6 +12,7 @@ class Tags {
 	public function __construct(\PDO $db) {
 		$this->db = $db; 
 	}
+	// Get all tags
 	public function getTags() {
 		$results = $this->db->prepare("SELECT * FROM tags ORDER BY id"); 
 		$results->execute();
