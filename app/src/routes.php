@@ -3,6 +3,7 @@
 use App\Posts;
 use App\Comments;
 use App\Tags;
+use App\PostsTags;
 
 /**************************************
   Routes
@@ -132,6 +133,16 @@ $app->post('/delete/{id}', function($request, $response, $args) {
 // Test of tags retieval 
 $app->get('/tags', function($request, $response, $args) {
   $tags = new Tags($this->db);
+  $results = $tags->getTags();
+  $args = $results;
+
+  echo "<pre>";
+  var_dump($args);
+  echo "</pre>";
+});
+//Get data from junction table
+$app->get('/ptags', function($request, $response, $args) {
+  $tags = new PostsTags($this->db);
   $results = $tags->getTags();
   $args = $results;
 
