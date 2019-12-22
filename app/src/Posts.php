@@ -31,8 +31,8 @@ class Posts {
 	}
 	// Get most recent post
 	public function getRecentPost(){
-		$results = $db->prepare("SELECT id FROM posts ORDER BY id DESC LIMIT 1");
-		$results = $db->execute();
+		$results = $this->db->prepare("SELECT id FROM posts ORDER BY id DESC LIMIT 1");
+		$results->execute();
 		return $results->fetch(PDO::FETCH_ASSOC);
 	}
 	// Add a post to database
