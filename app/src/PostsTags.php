@@ -13,8 +13,9 @@ class PostsTags {
 		$this->db = $db; 
 	}
 	// Get all tags
-	public function getTags() {
-		$results = $this->db->prepare("SELECT * FROM posts_tags ORDER BY post_id"); 
+	public function getTags($postId) {
+        $results = $this->db->prepare("SELECT tag_id FROM posts_tags WHERE post_id = :postId"); 
+        $results->bindParam(":postId", $postId, PDO::PARAM_INT);
 		$results->execute();
 		return $results->fetchAll(PDO::FETCH_ASSOC);
     }
