@@ -47,28 +47,39 @@ $app->post('/post/new', function($request, $response, $args) {
       $post = new Posts($this->db);
       $results = $post->addPost($args['title'], $args['date'], $args['entry']);
   }
-  
-  // Add tags to junction table if any
+  // Add post & tag ids to junction table
   if (!empty($args['tags'])) {
-      $postId = new Posts($this->db);
-      $recentPostId = $postId->getRecentPost();
-    
+    //   $postId = new Posts($this->db);
+    //   $recentPostId = $postId->getRecentPost();
+
       foreach ($args['tags'] as $tagId) {
-      $tagEntries = new PostsTags($this->db);
-      $insertTags = $tagEntries->addTags($recentPostId, $tagId);
-    } 
+        $tagEntries = new PostsTags($this->db);
+        $insertTags = $tagEntries->addTags($recentPostId, $tagId);
+    }
   } // end if
 
+  // Redirect to home page 
+  return $this->response->withStatus(200)->withHeader('Location', '/'); 
+});
+// Add post & tag ids to junction table
+$app->post('/post/tags', function($request, $response, $args) {
+  //$args = array_merge($args, $request->getParsedBody());
+  
   // echo "<pre>";
   // var_dump($args);
   // echo "</pre>";
 
-  // echo "<pre>";
-  // var_dump($getTags);
-  // echo "</pre>";
-
-  // Redirect to home page 
-  return $this->response->withStatus(200)->withHeader('Location', '/');
+  // if (!empty($args['tags'])) {
+  //     $postId = new Posts($this->db);
+  //     $recentPostId = $postId->getRecentPost();
+    
+  //     foreach ($args['tags'] as $tagId) {
+  //     $tagEntries = new PostsTags($this->db);
+  //     $insertTags = $tagEntries->addTags($recentPostId, $tagId);
+  //   }
+  // } // end if
+  // Redirect to home page  
+  //return $this->response->withStatus(200)->withHeader('Location', '/');
 });
 
 // View post to be edited in edit mode (field values can be changed)
