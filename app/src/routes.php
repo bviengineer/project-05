@@ -29,12 +29,15 @@ $app->get('/post/new', function($request, $response) {
 $app->post('/post/new', function($request, $response, $args) {
   // Getting form data with post details  
   $args = array_merge($args, $request->getParsedBody());
+  // Format of date 
+  $args['date'] = date('F d, Y', $args['date']);
 
-  if (!empty($args['title']) && !empty($args['entry'])) { //validate date as well?
-    // Add post to database 
-    $post = new Posts($this->db);
-    $results = $post->addPost($args['title'], $args['date'], $args['entry']);
-  }
+  // year, month, day
+  if (!empty($args['title']) && !empty($args['date']) && !empty($args['entry'])) { //validate date as well?
+      // Add post to database 
+      $post = new Posts($this->db);
+      $results = $post->addPost($args['title'], $args['date'], $args['entry']);
+  }  
   // Redirect to home page 
   return $this->response->withStatus(200)->withHeader('Location', '/');
 });
