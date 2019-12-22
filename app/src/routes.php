@@ -131,15 +131,14 @@ $app->post('/delete/{id}', function($request, $response, $args) {
 
 // Test of tags retieval 
 $app->get('/tags', function($request, $response, $args) {
-
   $tags = new Tags($this->db);
-  $myTags = $tags->getTags();
-  $result = $myTags();
+  $results = $tags->getTags();
+  $args = $results;
 
+  echo "<pre>";
   var_dump($args);
-
+  echo "</pre>";
 });
-
 // My test route using twig-view 
 $app->get('/hello/{name}', function ($request, $response, $args) {
   return $this->view->render($response, 'index.twig', [
