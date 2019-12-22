@@ -18,13 +18,13 @@ class PostsTags {
 		$results->execute();
 		return $results->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function addTags($post_id, $tags_id) {
-        $sql = "INSERT INTO posts_tags (title, date, body) VALUES(:title, :date, :body)";
+    // Add tag entries 
+    public function addTags($post_id, $tag_id) {
+        $sql = "INSERT INTO posts_tags (post_id, tag_id) VALUES(:post_id, :tag_id)";
 
 		$results = $this->db->prepare($sql); 
-		$results->bindParam(':title', $title, PDO::PARAM_STR);
-		$results->bindParam(':date', $date, PDO::PARAM_STR);
-		$results->bindParam(':body', $body, PDO::PARAM_STR);
+		$results->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+		$results->bindParam(':tag_id', $tag_id, PDO::PARAM_INT);
 		$results->execute();
 		return true;
     }
