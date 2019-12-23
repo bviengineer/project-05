@@ -25,6 +25,10 @@
 												<h1>{{ post.title }}</h1>
 												<time datetime="2016-01-31 1:00">{{ post.date}}</time>
                         <div class="entry">
+													Tags:
+													{% for tag in tags %}
+														<p> {{ tag }} </p>
+													{% endfor %}
 													{{ post.body }}
                             <p><a class="link" href="/edit/{{ post.id }}">Edit Entry</a></p>
                         </div>
