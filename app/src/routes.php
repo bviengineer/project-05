@@ -49,8 +49,8 @@ $app->post('/post/new', function($request, $response, $args) {
 
       //Add post & tag ids to junction table
       if (!empty($args['tags'])) {
-          $getRecentPost = new Posts($this->db);
-          $recentPost = $getRecentPost->getRecentPost();
+          // $getRecentPost = new Posts($this->db);
+          $recentPost = $post->getRecentPost();
           $postId = $recentPost['id'];
 
         foreach ($args['tags'] as $tagId) {
@@ -156,7 +156,7 @@ $app->get('/post/{id}', function($request, $response, $args) {
   // echo "</pre>";
 
   // View post & related comments
-  return $this->view->render($response, 'post.twig', $args);
+ return $this->view->render($response, 'post.twig', $args);
 });
 
 // Add comment to a specific post
