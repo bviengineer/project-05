@@ -71,6 +71,9 @@ $app->get('/edit/{id}', function($request, $response, $args) {
 
   // Store the results of returned post
   $args['post'] = $results;
+  // echo "<pre>";
+  // var_dump($args['post']);
+  // echo "</pre>";
   
   // Display the post
   return $this->view->render($response, 'edit.twig', $args);
@@ -80,6 +83,17 @@ $app->get('/edit/{id}', function($request, $response, $args) {
 $app->post('/edit/{id}', function($request, $response, $args) {
   // Getting form data with updates 
   $args = array_merge($args, $request->getParsedBody());
+// echo "<pre>";
+// var_dump($args);
+// echo "</pre>";
+
+  // Date conversion
+  $dateArray = explode("/", $args['date']); 
+  $year = $dateArray[2];
+  $month =  date('F', $dateArray[0]);
+  $day = $dateArray[1];
+  $date = $month . " " . $day . ", " . $year;
+  $args['date'] = $date;
 
   // Verifing completed fields
   if (!empty($args['title']) && !empty($args['entry'])) { //validate date as well?
