@@ -96,50 +96,67 @@ $app->get('/post/{id}', function($request, $response, $args) {
   // Retrieve specified post from database 
   $post = new Posts($this->db);
   $results = $post->getFullPost($args['id']);
+  
+  // Assign a keys to the args array & store respective results of queries
+  // echo "The post";
+  // $args['post'] = $results;
+  // echo "<pre>";
+  // var_dump($args['post']);
+  // echo "</pre>";
+
 
   // Retrieve related comment(s) 
   $comm = new Comments($this->db);
   $postComm = $comm->getComments($args['id']);
+  // Assign a keys to the args array & store respective results of queries
+  $args['comments'] = $postComm;
+  // echo "The comments";
+  // echo "<pre>";
+  // var_dump($args['comments']);
+  // echo "</pre>";
 
+  // Add conditional here to check if a post has tags before making call to database 
   // Retrieve tag id(s) for a specified post
   $getTagId = new PostsTags($this->db);
   $tagId = $getTagId->getTags($args['id']);
   $args['tagId'] = $tagId;
+  // echo "The tag IDs for the specified post";
   // echo "<pre>";
   // var_dump($args['tagId']);
   // echo "</pre>";
 
-  // Retrieve related tag(s) name(s)
+  // Retrieve related tag(s) name(s) for specified post 
   // if (!empty($args['tadId'])) {
   $getTagName = new Tags($this->db);
-  $tags = [];
+  $tags = []; // array for tag names
   foreach ($args['tagId'] as $id) {
     //echo "<pre>";
     //var_dump($id['tag_id']);
     //var_dump($id);  
     //echo "</pre>";
     $tagName = $getTagName->getTags($id['tag_id']);
-    //array_push($tags, $tagName[0]['name']);
-    echo "<pre>";
-    var_dump($tagName[0]['name']);
-    echo "</pre>";
+    array_push($tags, $tagName[0]['name']);
+    // echo "The tag names for each tag id<pre>";
+    // var_dump($tagName[0]['name']);
+    // echo "</pre>";
   // }
   }
-  //$args['tags'] = $tags;
-  //echo "<pre>";
-  //var_dump($tagName[0]['name']);
-  //var_dump($args['tags']);
-  //echo "</pre>";
-  // Assign a keys to the args array & store results of queries
-  $args['post'] = $results;
-  $args['comments'] = $postComm;
+  // Assign a keys to the args array & store respective results of queries
+  // $args['post'] = $results;
+  // $args['comments'] = $postComm;
+  $args['tags'] = $tags;
+
+  echo "The tag name for each tag is in the args array<pre>";
+  var_dump($tagName[0]['name']);
+  var_dump($args['tags']);
+  echo "</pre>";
 
   // echo "<pre>";
   // var_dump($args);
   // echo "</pre>";
 
   // View post & related comments
-  //return $this->view->render($response, 'post.twig', $args);
+  return $this->view->render($response, 'post.twig', $args);
 });
 
 // Add comment to a specific post
