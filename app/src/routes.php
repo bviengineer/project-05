@@ -98,8 +98,8 @@ $app->get('/post/{id}', function($request, $response, $args) {
   $results = $post->getFullPost($args['id']);
   
   // Assign a keys to the args array & store respective results of queries
+   $args['post'] = $results;
   // echo "The post";
-  // $args['post'] = $results;
   // echo "<pre>";
   // var_dump($args['post']);
   // echo "</pre>";
@@ -146,10 +146,10 @@ $app->get('/post/{id}', function($request, $response, $args) {
   // $args['comments'] = $postComm;
   $args['tags'] = $tags;
 
-  echo "The tag name for each tag is in the args array<pre>";
-  var_dump($tagName[0]['name']);
-  var_dump($args['tags']);
-  echo "</pre>";
+  // echo "The tag name for each tag is in the args array<pre>";
+  // var_dump($tagName[0]['name']);
+  // var_dump($args['tags']);
+  // echo "</pre>";
 
   // echo "<pre>";
   // var_dump($args);
