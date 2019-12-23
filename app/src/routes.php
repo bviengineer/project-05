@@ -103,25 +103,40 @@ $app->get('/post/{id}', function($request, $response, $args) {
 
   // Retrieve tag id(s) for a specified post
   $getTagId = new PostsTags($this->db);
-  $tagIds = $getTagId->getTags($args['id']);
-  $args['tagIds'] = $tagIds;
+  $tagId = $getTagId->getTags($args['id']);
+  $args['tagId'] = $tagId;
+  // echo "<pre>";
+  // var_dump($args['tagId']);
+  // echo "</pre>";
 
   // Retrieve related tag(s) name(s)
-  if (!empty($args['tadIds'])) {
-  foreach ($args['tagIds'] as $ids) {
-    $getTagName = new Tags($this->db);
-    $tagName = $getTagName->getTags($ids);
-    
-    //array_push($args['tags'], $tagName);
+  // if (!empty($args['tadId'])) {
+  $getTagName = new Tags($this->db);
+  $tags = [];
+  foreach ($args['tagId'] as $id) {
+    //echo "<pre>";
+    //var_dump($id['tag_id']);
+    //var_dump($id);  
+    //echo "</pre>";
+    $tagName = $getTagName->getTags($id['tag_id']);
+    //array_push($tags, $tagName[0]['name']);
+    echo "<pre>";
+    var_dump($tagName[0]['name']);
+    echo "</pre>";
+  // }
   }
-}
+  //$args['tags'] = $tags;
+  //echo "<pre>";
+  //var_dump($tagName[0]['name']);
+  //var_dump($args['tags']);
+  //echo "</pre>";
   // Assign a keys to the args array & store results of queries
   $args['post'] = $results;
   $args['comments'] = $postComm;
 
-  echo "<pre>";
-  var_dump($args);
-  echo "</pre>";
+  // echo "<pre>";
+  // var_dump($args);
+  // echo "</pre>";
 
   // View post & related comments
   //return $this->view->render($response, 'post.twig', $args);
