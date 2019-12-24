@@ -213,26 +213,6 @@ $app->post('/delete/{id}', function($request, $response, $args) {
 
 
 
-// Test of tags retrieval 
-$app->get('/tags', function($request, $response, $args) {
-  $tags = new Tags($this->db);
-  $results = $tags->getTags();
-  $args = $results;
-
-  echo "<pre>";
-  var_dump($args);
-  echo "</pre>";
-});
-//Get data from junction table
-$app->get('/ptags', function($request, $response, $args) {
-  $tags = new PostsTags($this->db);
-  $results = $tags->getTags();
-  $args = $results;
-
-  echo "<pre>";
-  var_dump($args);
-  echo "</pre>";
-});
 // My test route using twig-view 
 $app->get('/hello/{name}', function ($request, $response, $args) {
   return $this->view->render($response, 'index.twig', [
