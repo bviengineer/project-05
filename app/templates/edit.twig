@@ -21,6 +21,16 @@
         <section>
             <div class="container">
                 <div class="edit-entry">
+										<!-- Retrieving the tags for a post -->
+										{% for tag in tagId %}
+										{{ tag.tag_id }}
+										{% endfor %}
+                                 
+                                        {% for tag in tagId %}
+                                            {% if 1 in tag.tag_id %} 
+                                                <p>Technology</p>
+                                            {% endif %}
+                                        {% endfor %}
 										<h2>Edit Entry</h2>
 										{# Gets the post details from $app->get('/edit/{id}' route passed to this page from the url in the post.twig page. The route goes to the database and gets the specified post #}
                     <form action="/edit/{{ post.id }}" method="POST">
@@ -29,8 +39,8 @@
 												<label for="Date"></label>
 												<input type="hidden" name="date" value={{ "now"|date("m/d/Y") }}>
 												{# <label for="title"> Date</label>
-                        <input type="date" name="date" value="{{ post.date}}"><br> #}
-                        <label for="entry">Entry</label>
+												<input type="date" name="date" value="{{ post.date}}"><br> #}
+										   <label for="entry">Entry</label>
 												<textarea rows="5" name="entry">{{ post.body }}</textarea>
 												<input type="checkbox" name="tags[]" value="1">Technology<br>
 												<input type="checkbox" name="tags[]" value="2">Travel<br>
