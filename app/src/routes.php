@@ -79,12 +79,21 @@ $app->get('/edit/{id}', function($request, $response, $args) {
   // Get tags associated with the blog entry, if any
   $getTags = new PostsTags($this->db);
   $tags = $getTags->getTags($args['id']);
+  $args['tagId'] = $tags;
+  // array(1) {
+  //   [0]=>
+  //   array(1) {
+  //     ["tag_id"]=>
+  //     string(1) "4"
+  //   }
+  // }
+
   // echo "<pre>";
-  // var_dump($tags);
+  // var_dump($args['tagId']);
   // echo "</pre>";
 
   // Display the post
-  return $this->view->render($response, 'edit.twig', $args);
+  //return $this->view->render($response, 'edit.twig', $args);
 });
 
 // Update a post
