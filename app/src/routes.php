@@ -74,7 +74,15 @@ $app->get('/edit/{id}', function($request, $response, $args) {
   // echo "<pre>";
   // var_dump($args['post']);
   // echo "</pre>";
-  
+  //var_dump($args['id']);
+
+  // Get tags associated with the blog entry, if any
+  $getTags = new PostsTags($this->db);
+  $tags = $getTags->getTags($args['id']);
+  // echo "<pre>";
+  // var_dump($tags);
+  // echo "</pre>";
+
   // Display the post
   return $this->view->render($response, 'edit.twig', $args);
 });
@@ -102,7 +110,7 @@ $app->post('/edit/{id}', function($request, $response, $args) {
       $results = $post->updatePost($args['id'], $args['title'], $args['date'], $args['entry']);
   }
   // View updated post 
-  return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id'] );
+  //return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id'] );
 });
 
 // Display a single post
