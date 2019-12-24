@@ -89,11 +89,11 @@ $app->get('/edit/{id}', function($request, $response, $args) {
   // }
 
   // echo "<pre>";
-  // var_dump($args['tagId']);
+  // var_dump($args['tagId'][0]);
   // echo "</pre>";
 
   // Display the post
-  //return $this->view->render($response, 'edit.twig', $args);
+  return $this->view->render($response, 'edit.twig', $args);
 });
 
 // Update a post
