@@ -105,13 +105,13 @@ $app->get('/edit/{id}', function($request, $response, $args) {
   return $this->view->render($response, 'edit.twig', $args);
 });
 
-// Update a post
+// Update content of a post
 $app->post('/edit/{id}', function($request, $response, $args) {
   // Getting form data with updates 
   $args = array_merge($args, $request->getParsedBody());
-// echo "<pre>";
-// var_dump($args);
-// echo "</pre>";
+  // echo "<pre>";
+  // var_dump($args);
+  // echo "</pre>";
 
   // Date conversion
   $dateArray = explode("/", $args['date']); 
@@ -127,8 +127,37 @@ $app->post('/edit/{id}', function($request, $response, $args) {
       $post = new Posts($this->db);
       $results = $post->updatePost($args['id'], $args['title'], $args['date'], $args['entry']);
   }
+  // Go to PostTags junction table
+  $tagsPosts = new PostsTags($this->db);
+
+  // Delete existing tags if any, then add the checked ones if any
+  if (!empty($args['tags'])) {
+      if ($tagsPosts->getTags($args['id'])) {
+        //var_dump($tagsPosts->getTags($args['id']));
+        // $currentTags = $tagsPosts->getTags($args['id']);
+        // echo "Before deleting <pre>";
+        // var_dump($currentTags);
+        // echo "</pre>";
+        $deleteTags = $tagsPosts->deleteTags($args['id']);
+        // echo "After deleting <pre>";
+        // var_dump($deleteTags);
+        // echo "</pre>";
+      }
+      // Add new tags
+      for ($i = 0; $i < count($args['tags']); $i++) {
+        $addNewTags = $postsTags->addTags($args['id'], $args['tags'][$i]);
+      }
+
+    // echo "<pre>";
+    // var_dump($args['tags'][$i]);
+    // echo "</pre>";
+
+    // echo "<pre>";
+    // var_dump($addNewTAgs);
+    // echo "</pre>";
+  }
   // View updated post 
-  //return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id'] );
+  return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id'] );
 });
 
 // Display a single post
