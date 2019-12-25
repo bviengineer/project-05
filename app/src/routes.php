@@ -33,12 +33,12 @@ $app->post('/post/new', function($request, $response, $args) {
   $args = array_merge($args, $request->getParsedBody());
 
   // Date conversion
-  $dateArray = explode("/", $args['date']); 
-  $year = $dateArray[2];
-  $month =  date('F', $dateArray[0]);
-  $day = $dateArray[1];
-  $date = $month . " " . $day . ", " . $year;
-  $args['date'] = $date;
+  // $dateArray = explode("/", $args['date']); 
+  // $year = $dateArray[2];
+  // $month =  date('F', $dateArray[0]);
+  // $day = $dateArray[1];
+  // $date = $month . " " . $day . ", " . $year;
+  // $args['date'] = $date;
   //$args['date'] = date('F d, Y', $args['date']);
 
   // Add post
@@ -119,12 +119,12 @@ $app->post('/edit/{id}', function($request, $response, $args) {
 
 
   // Date conversion
-  $dateArray = explode("/", $args['date']); 
-  $year = $dateArray[2];
-  $month =  date('F', $dateArray[0]);
-  $day = $dateArray[1];
-  $date = $month . " " . $day . ", " . $year;
-  $args['date'] = $date;
+  // $dateArray = explode("/", $args['date']); 
+  // $year = $dateArray[2];
+  // $month =  date('F', $dateArray[0]);
+  // $day = $dateArray[1];
+  // $date = $month . " " . $day . ", " . $year;
+  // $args['date'] = $date;
 
   // Verifing completed fields
   if (!empty($args['title']) && !empty($args['entry'])) { //validate date as well?
@@ -242,12 +242,12 @@ $app->post('/post/{id}', function($request, $response, $args) {
   // Getting comment sent for posting
   $args = array_merge($args, $request->getParsedBody());
   
-  $dateArray = explode("/", $args['date']); 
-  $year = $dateArray[2];
-  $month =  date('F', $dateArray[0]);
-  $day = $dateArray[1];
-  $date = $month . " " . $day . ", " . $year;
-  $args['date'] = $date;
+  // $dateArray = explode("/", $args['date']); 
+  // $year = $dateArray[2];
+  // $month =  date('F', $dateArray[0]);
+  // $day = $dateArray[1];
+  // $date = $month . " " . $day . ", " . $year;
+  // $args['date'] = $date;
 
   // Add comment to commments table 
   $comm = new Comments($this->db);
