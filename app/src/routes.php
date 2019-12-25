@@ -80,20 +80,21 @@ $app->get('/edit/{id}', function($request, $response, $args) {
   $getTags = new PostsTags($this->db);
   $tags = $getTags->getTags($args['id']);
   $args['tagId'] = $tags;
-
   // Adding each tag_id value to the $args['tagId] array without inner array
   // for ($i = 0; $i < count($tags); $i++) {
   //   $tagId = $tags[$i]['tag_id'];
   //   array_push($args['tagId'], $tagId);
   // }
 
-  // foreach ($args['tagIds'] as $key => $tag) {
-  //   $tagId = $tag;
-  //   array_push($args['tagId'], $tag);
-  // }
+  //foreach ($args['tagIds'] as $tag) {
+    // echo "<pre>";
+    // var_dump($args['tagId']);
+    // echo "</pre>";
+    // array_push($args['post'], $tag);
+  //}
   
   // echo "<pre>";
-  // var_dump($args['tagId']);
+  // var_dump($args['post']);
   // echo "</pre>";
 
   // echo "<pre>";

@@ -27,6 +27,11 @@
 										{{ tag.tag_id }}
 									{% endif %}
 									{% endfor %}
+
+									{% for key, value in tagId %}
+									 {{ key.tagId }}
+									 {{ value.tagId }}
+									 {% endfor %}
 																
 									<h2>Edit Entry</h2>
 									{# Gets the post details from $app->get('/edit/{id}' route passed to this page from the url in the post.twig page. The route goes to the database and gets the specified post #}
