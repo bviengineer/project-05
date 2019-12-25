@@ -43,13 +43,13 @@
 											
 											<!-- Checking for Technology tag -->
 											{% if 1 in tag.tag_id %}
-												<input type="checkbox" name="tags[]" value="1" checked >Technology<br>
+												<input type="checkbox" name="tags[]" value="1" checked>Technology<br>
 											{% else %}
 												<input type="checkbox" name="tags[]" value="1">Technology<br>
-										{% endif %}
+											{% endif %}
 
 										<!-- Checking for Travel tag -->
-										{%if 2 in tag.tag_id %}
+										{% if 2 in tag.tag_id %}
 											<input type="checkbox" name="tags[]" value="2" checked>Travel<br>
 										{% else %}
 											<input type="checkbox" name="tags[]" value="2">Travel<br>
@@ -59,7 +59,7 @@
 										{% if 3 in tag.tag_id %}
 											<input type="checkbox" name="tags[]" value="3" checked>Personal<br>
 										{% else %}
-											<input type="checkbox" name="tags[]" value="3" checked>Personal<br>
+											<input type="checkbox" name="tags[]" value="3">Personal<br>
 										{% endif %}
 										
 										<!-- Checking for Other tag -->
