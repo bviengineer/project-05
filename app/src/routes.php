@@ -89,7 +89,7 @@ $app->get('/edit/{id}', function($request, $response, $args) {
   // }
 
   // echo "<pre>";
-  // var_dump($args['tagId'][0]);
+  // var_dump($args['tagId']);
   // echo "</pre>";
 
   // Display the post
