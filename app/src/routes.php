@@ -74,22 +74,30 @@ $app->get('/edit/{id}', function($request, $response, $args) {
   // echo "<pre>";
   // var_dump($args['post']);
   // echo "</pre>";
-  //var_dump($args['id']);
+  // var_dump($args['id']);
 
   // Get tags associated with the blog entry, if any
   $getTags = new PostsTags($this->db);
   $tags = $getTags->getTags($args['id']);
   $args['tagId'] = $tags;
-  // array(1) {
-  //   [0]=>
-  //   array(1) {
-  //     ["tag_id"]=>
-  //     string(1) "4"
-  //   }
+
+  // Adding each tag_id value to the $args['tagId] array without inner array
+  // for ($i = 0; $i < count($tags); $i++) {
+  //   $tagId = $tags[$i]['tag_id'];
+  //   array_push($args['tagId'], $tagId);
   // }
 
+  // foreach ($args['tagIds'] as $key => $tag) {
+  //   $tagId = $tag;
+  //   array_push($args['tagId'], $tag);
+  // }
+  
   // echo "<pre>";
   // var_dump($args['tagId']);
+  // echo "</pre>";
+
+  // echo "<pre>";
+  // var_dump($args['tagIds']);
   // echo "</pre>";
 
   // Display the post
