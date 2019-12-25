@@ -21,9 +21,11 @@
         <section>
             <div class="container">
                 <div class="edit-entry">
-									<!-- Retrieving the tags for a post -->
+									<!-- Testing retrieval of the tags for a post -->
 									{% for tag in tagId %}
-									{{ tag.tag_id }}
+									{% if tag.tag_id == 4 %}
+										{{ tag.tag_id }}
+									{% endif %}
 									{% endfor %}
 																
 									<h2>Edit Entry</h2>
@@ -41,36 +43,37 @@
 										Marking them as checked if found in the database, else, leaving them unchecked -->
 									{% if tagId %}
 										{% for tag in tagId %}
+
 											<!-- Checking for Technology tag -->
-											{% if 1 in tag.tag_id %}
+											{% if tag.tag_id == 1 %}
 												<input type="checkbox" name="tags[]" value="1" checked>Technology<br>
 											{% else %}
 												<input type="checkbox" name="tags[]" value="1">Technology<br>
 											{% endif %}
 
 										<!-- Checking for Travel tag -->
-										{% if 2 in tag.tag_id %}
+										{% if tag.tag_id == 2 %}
 											<input type="checkbox" name="tags[]" value="2" checked>Travel<br>
 										{% else %}
 											<input type="checkbox" name="tags[]" value="2">Travel<br>
 										{% endif %}
 										
 										<!-- Checking for Personal tag -->
-										{% if 3 in tag.tag_id %}
+										{% if tag.tag_id == 3 %}
 											<input type="checkbox" name="tags[]" value="3" checked>Personal<br>
 										{% else %}
 											<input type="checkbox" name="tags[]" value="3">Personal<br>
 										{% endif %}
 										
 										<!-- Checking for Other tag -->
-										{% if 4 in tag.tag_id %}
+										{% if tag.tag_id == 4 %}
 											<input type="checkbox" name="tags[]" value="4" checked>Other<br>
 										{% else %}
 											<input type="checkbox" name="tags[]" value="4">Other<br>
 										{% endif %}
 										
 										<!-- Checking for Health & Wellness tag -->
-										{% if 5 in tag.tag_id %}
+										{% if tag.tag_id == 5 %}
 											<input type="checkbox" name="tags[]" value="5" checked>Health and Wellness<br>
 										{% else %}
 											<input type="checkbox" name="tags[]" value="5">Health and Wellness<br>
