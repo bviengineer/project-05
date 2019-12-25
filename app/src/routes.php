@@ -135,7 +135,7 @@ $app->post('/edit/{id}', function($request, $response, $args) {
   // Go to PostTags junction table
   $postsTags = new PostsTags($this->db);
 
-  // Delete existing tags if any, then add the checked ones if any
+  // Delete existing tags selection or deselection if any, then add the checked ones if any
   if (!empty($args['tags'])) {
       if ($postsTags->getTags($args['id'])) {
         //var_dump($tagsPosts->getTags($args['id']));
