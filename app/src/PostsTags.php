@@ -20,7 +20,7 @@ class PostsTags {
 		return $results->fetchAll(PDO::FETCH_ASSOC);
     }
     // Add tag entries 
-    public function addTags($post_id = null, $tag_id) {
+    public function addTags($post_id, $tag_id) {
         $sql = "INSERT INTO posts_tags (post_id, tag_id) VALUES(:post_id, :tag_id)";
 
 		$results = $this->db->prepare($sql); 
