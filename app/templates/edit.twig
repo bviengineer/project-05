@@ -21,48 +21,71 @@
         <section>
             <div class="container">
                 <div class="edit-entry">
-										<!-- Retrieving the tags for a post -->
+									<!-- Retrieving the tags for a post -->
+									{% for tag in tagId %}
+									{{ tag.tag_id }}
+									{% endfor %}
+																
+									<h2>Edit Entry</h2>
+									{# Gets the post details from $app->get('/edit/{id}' route passed to this page from the url in the post.twig page. The route goes to the database and gets the specified post #}
+									<form action="/edit/{{ post.id }}" method="POST">
+										<label for="title"> Title</label>
+										<input type="text" name="title"  value="{{ post.title }}"><br>
+										<label for="Date"></label>
+										<input type="hidden" name="date" value={{ "now"|date("m/d/Y") }}>
+										{# <label for="title"> Date</label>
+										<input type="date" name="date" value="{{ post.date}}"><br> #}
+										<label for="entry">Entry</label>
+										<textarea rows="5" name="entry">{{ post.body }}</textarea>
+										<!-- Looping through list of tags stored in database for the entry
+										Marking them as checked if found in the database, else, leaving them unchecked -->
 										{% for tag in tagId %}
-										{{ tag.tag_id }}
-										{% endfor %}
-                                 
-										<h2>Edit Entry</h2>
-										{# Gets the post details from $app->get('/edit/{id}' route passed to this page from the url in the post.twig page. The route goes to the database and gets the specified post #}
-                    <form action="/edit/{{ post.id }}" method="POST">
-                        <label for="title"> Title</label>
-												<input type="text" name="title"  value="{{ post.title }}"><br>
-												<label for="Date"></label>
-												<input type="hidden" name="date" value={{ "now"|date("m/d/Y") }}>
-												{# <label for="title"> Date</label>
-												<input type="date" name="date" value="{{ post.date}}"><br> #}
-										   <label for="entry">Entry</label>
-												<textarea rows="5" name="entry">{{ post.body }}</textarea>
-												{% for tag in tagId %}
-													{% if 1 in tag.tag_id %}
-													<input type="checkbox" name="tags[]" value="1" checked >Technology<br>
-												{% endif %}
-												{%if 2 in tag.tag_id %}
-												<input type="checkbox" name="tags[]" value="2" checked>Travel<br>
-												{% endif %}
-												{% if 3 in tag.tag_id %}
-												<input type="checkbox" name="tags[]" value="3" checked>Personal<br>
-												{% endif %}
-												{% if 4 in tag.tag_id %}
-												<input type="checkbox" name="tags[]" value="4" checked>Other<br>
-												{% endif %}
-												{% if 5 in tag.tag_id %}
-												<input type="checkbox" name="tags[]" value="5" checked>Health and Wellness<br>
-												{% endif %}
-											{% endfor %}
-                        <input type="submit" value="Publish Entry" class="button">
-                        <input type="submit" value="Save Entry" class="button">
-                        <a href="/post/{{ post.id }}" class="button button-secondary">Cancel</a>
-										</form>
-										<form action="/delete/{{ post.id}}" method="POST">
-											<input type="submit" value="Delete Post" name="delete" class="button">
-										</form>
-                </div>
-            </div>
+											
+											<!-- Checking for Technology tag -->
+											{% if 1 in tag.tag_id %}
+												<input type="checkbox" name="tags[]" value="1" checked >Technology<br>
+											{% else %}
+												<input type="checkbox" name="tags[]" value="1">Technology<br>
+										{% endif %}
+
+										<!-- Checking for Travel tag -->
+										{%if 2 in tag.tag_id %}
+											<input type="checkbox" name="tags[]" value="2" checked>Travel<br>
+										{% else %}
+											<input type="checkbox" name="tags[]" value="2">Travel<br>
+										{% endif %}
+										
+										<!-- Checking for Personal tag -->
+										{% if 3 in tag.tag_id %}
+											<input type="checkbox" name="tags[]" value="3" checked>Personal<br>
+										{% else %}
+											<input type="checkbox" name="tags[]" value="3" checked>Personal<br>
+										{% endif %}
+										
+										<!-- Checking for Other tag -->
+										{% if 4 in tag.tag_id %}
+											<input type="checkbox" name="tags[]" value="4" checked>Other<br>
+										{% else %}
+											<input type="checkbox" name="tags[]" value="4">Other<br>
+										{% endif %}
+										
+										<!-- Checking for Health & Wellness tag -->
+										{% if 5 in tag.tag_id %}
+											<input type="checkbox" name="tags[]" value="5" checked>Health and Wellness<br>
+										{% else %}
+											<input type="checkbox" name="tags[]" value="5">Health and Wellness<br>
+										{% endif %}
+									
+									{% endfor %}
+											<input type="submit" value="Publish Entry" class="button">
+											<input type="submit" value="Save Entry" class="button">
+											<a href="/post/{{ post.id }}" class="button button-secondary">Cancel</a>
+									</form>
+									<form action="/delete/{{ post.id}}" method="POST">
+										<input type="submit" value="Delete Post" name="delete" class="button">
+									</form>
+							</div>
+					</div>
         </section>
         <footer>
             <div>
