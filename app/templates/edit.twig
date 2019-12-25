@@ -46,14 +46,13 @@
 										<textarea rows="5" name="entry">{{ post.body }}</textarea>
 										<!-- Looping through list of tags stored in database for the entry
 										Marking them as checked if found in the database, else, leaving them unchecked -->
-									<!-- if tagId is empty
+									{% if tagId is empty %}
 										<input type="checkbox" name="tags[]" value="1">Technology<br>
 										<input type="checkbox" name="tags[]" value="2">Travel<br>
 										<input type="checkbox" name="tags[]" value="3">Personal<br>
 										<input type="checkbox" name="tags[]" value="4">Other<br>
 										<input type="checkbox" name="tags[]" value="5">Health and Wellness<br>
-									else 
-									 if taId -->
+									{% endif %} 
 										{% for tag in tagId %}
 											<!-- Checking for Technology tag -->
 											{% if tag.tag_id == 1 %}
