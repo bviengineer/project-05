@@ -26,11 +26,6 @@
 										{{ tag.tag_id }}
 										{% endfor %}
                                  
-                                        {% for tag in tagId %}
-                                            {% if 1 in tag.tag_id %} 
-                                                <p>Technology</p>
-                                            {% endif %}
-                                        {% endfor %}
 										<h2>Edit Entry</h2>
 										{# Gets the post details from $app->get('/edit/{id}' route passed to this page from the url in the post.twig page. The route goes to the database and gets the specified post #}
                     <form action="/edit/{{ post.id }}" method="POST">
@@ -42,11 +37,23 @@
 												<input type="date" name="date" value="{{ post.date}}"><br> #}
 										   <label for="entry">Entry</label>
 												<textarea rows="5" name="entry">{{ post.body }}</textarea>
-												<input type="checkbox" name="tags[]" value="1">Technology<br>
-												<input type="checkbox" name="tags[]" value="2">Travel<br>
-												<input type="checkbox" name="tags[]" value="3">Personal<br>
-												<input type="checkbox" name="tags[]" value="4">Other<br>
-												<input type="checkbox" name="tags[]" value="5">Health and Wellness<br>
+												{% for tag in tagId %}
+													{% if 1 in tag.tag_id %}
+													<input type="checkbox" name="tags[]" value="1" checked >Technology<br>
+												{% endif %}
+												{%if 2 in tag.tag_id %}
+												<input type="checkbox" name="tags[]" value="2" checked>Travel<br>
+												{% endif %}
+												{% if 3 in tag.tag_id %}
+												<input type="checkbox" name="tags[]" value="3" checked>Personal<br>
+												{% endif %}
+												{% if 4 in tag.tag_id %}
+												<input type="checkbox" name="tags[]" value="4" checked>Other<br>
+												{% endif %}
+												{% if 5 in tag.tag_id %}
+												<input type="checkbox" name="tags[]" value="5" checked>Health and Wellness<br>
+												{% endif %}
+											{% endfor %}
                         <input type="submit" value="Publish Entry" class="button">
                         <input type="submit" value="Save Entry" class="button">
                         <a href="/post/{{ post.id }}" class="button button-secondary">Cancel</a>
