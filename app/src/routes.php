@@ -162,6 +162,8 @@ $app->post('/edit/{id}', function($request, $response, $args) {
     // echo "<pre>";
     // var_dump($addNewTAgs);
     // echo "</pre>";
+  } elseif (empty($args['tags'])) {
+      $deleteTags = $postsTags->deleteTags($args['id']);
   }
   // View updated post 
   return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id'] );
