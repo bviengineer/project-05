@@ -23,7 +23,7 @@
                 <div class="entry-list">
                 {% for item in posts %}
                   <article>
-										<h2 class="flexbox-wrapper">
+										<h2 class="flexbox-container">
 											<a href="/post/{{ item.id }}" class="child-flex-item">{{ item.title }}</a>
 											<a href="/post/{{ item.id }}" class="button button-view-post child-flex-item">View post</a>
 											<form method="post" action="/delete/{{ item.id }}" class="child-flex-item">
