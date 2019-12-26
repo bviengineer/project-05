@@ -84,9 +84,12 @@ footer a {
 .button-view-post {
 	color: white!important;
 	background-color: green;
+	max-width: auto;
+	height: 25px;
 }
 .delete-button {
 	background-color: red;
+	height: 45px;
 }
 
 
@@ -213,10 +216,11 @@ a.link {
 	margin: 0 auto;
 }
 .flexbox-wrapper {
-	width: auto;
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: row;
+
 }
+
 
 
 
