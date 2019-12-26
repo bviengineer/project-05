@@ -23,11 +23,11 @@
                 <div class="new-entry">
                     <h2>Publish New Entry</h2>
                     <form action="/post/new" method="POST">
-                        <label for="title"> Title</label>
+                        <label for="title"> Title <span>*</span></label>
                         <input type="text" name="title"><br>
 												<label for="Date"></label>
 												<input type="hidden" name="date" value={{ "now"|date("m/d/Y") }}>
-                        <label for="entry">Entry</label>
+                        <label for="entry">Entry <span>*</span></label>
 												<textarea rows="5" name="entry"></textarea>
 												<input type="checkbox" name="tags[]" value="1">Technology<br>
 												<input type="checkbox" name="tags[]" value="2">Travel<br>
