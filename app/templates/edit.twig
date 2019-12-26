@@ -20,19 +20,7 @@
         </header>
         <section>
             <div class="container">
-                <div class="edit-entry">
-									<!-- Testing retrieval of the tags for a post -->
-									{% for tag in tagId %}
-									{% if tag.tag_id == 4 %}
-										{{ tag.tag_id }}
-									{% endif %}
-									{% endfor %}
-
-									{% for key, value in tagId %}
-									 {{ key.tagId }}
-									 {{ value.tagId }}
-									 {% endfor %}
-																
+                <div class="edit-entry">	
 									<h2>Edit Entry</h2>
 									{# Gets the post details from $app->get('/edit/{id}' route passed to this page from the url in the post.twig page. The route goes to the database and gets the specified post #}
 									<form action="/edit/{{ post.id }}" method="POST">
