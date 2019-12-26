@@ -53,8 +53,8 @@ $app->post('/post/new', function($request, $response, $args) {
           $recentPost = $post->getRecentPost();
           $postId = $recentPost['id'];
 
+        $tagEntries = new PostsTags($this->db);
         foreach ($args['tags'] as $tagId) {
-          $tagEntries = new PostsTags($this->db);
           $insertTags = $tagEntries->addTags($postId, $tagId);
         } // end foreach 
       } // end if
