@@ -23,8 +23,8 @@
                 <div class="entry-list">
                 {% for item in posts %}
                   <article>
-										<h2>
-											<a href="/post/{{ item.id }}">{{ item.title }}</a><br>
+										<h2 class="wrapper">
+											<a href="/post/{{ item.id }}">{{ item.title }}</a>
 											<a href="/post/{{ item.id }}" class="button button-view-post">View post</a>
 											<form method="post" action="/delete/{{ item.id }}">
 												<input type="submit" value="Delete post" class="button delete-button">
