@@ -87,11 +87,15 @@ footer a {
 	max-width: auto;
 	border: none;
 	border-radius: 5px;
+	/* Box shadow property obtained for W3Schools https://www.w3schools.com/css/css3_buttons.asp*/
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .delete-button {
 	background-color: rgb(241, 76, 76);
 	border: none;
 	border-radius: 5px;
+	/* Box shadow property obtained for W3Schools https://www.w3schools.com/css/css3_buttons.asp*/
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 
