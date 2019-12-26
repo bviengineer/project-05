@@ -255,6 +255,12 @@ a.link {
 	background-color: rgb(241, 237, 237);
 	color: green;
 }
+.tags-flexbox-container p {
+	align-self: flex-start;
+	/* margin-left: auto; */
+	color: red!important;
+	background-color: white!important;
+}
 
 
 /* ==========================================================================
