@@ -253,14 +253,14 @@ a.link {
 	margin: 7px;
 	border-radius: 5px;
 	background-color: rgb(241, 237, 237);
-	color: green;
+	color: purple;
 	/* Box shadow property obtained for W3Schools https://www.w3schools.com/css/css3_buttons.asp*/
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .tags-flexbox-container p {
 	align-self: flex-start;
 	/* margin-left: auto; */
-	color: red!important;
+	color: rgb(66, 65, 65)!important;
 	background-color: white!important;
 }
 
