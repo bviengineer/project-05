@@ -239,6 +239,21 @@ a.link {
 	align-self: flex-end;
 	margin: 3px;
 }
+.tags-flexbox-container {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+.li-flex-items {
+	list-style-type: none;
+	padding: 0.7em;
+	margin: 7px;
+	border-radius: 5px;
+	background-color: rgb(241, 237, 237);
+	color: green;
+}
 
 
 /* ==========================================================================
@@ -294,17 +309,3 @@ form textarea:hover {
 input[type=submit] {
 	margin-right: 5px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
