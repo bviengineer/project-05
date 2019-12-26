@@ -24,16 +24,15 @@
                     <article>
 												<h1>{{ post.title }}</h1>
 												<time datetime="2016-01-31 1:00">{{ post.date}}</time>
-                        <div class="entry">
-													<!-- Display of tags -->
-													Tags:
-													<ul class="tags-flexbox-container">
+												<!-- Display of tags -->
+												<ul class="tags-flexbox-container">
 													{% for tag in tags %}
 														 <li class="li-flex-items">{{ tag }} </li>
 													{% endfor %}
-													</ul>
-													{{ post.body }}
-                            <p><a class="link" href="/edit/{{ post.id }}">Edit Entry</a></p>
+												</ul>
+                        <div class="entry">
+													<p>{{ post.body }}</p>
+                        	<p><a class="link" href="/edit/{{ post.id }}">Edit Entry</a></p>
                         </div>
                     </article>
                 </div>
