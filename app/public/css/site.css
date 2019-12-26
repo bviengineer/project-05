@@ -248,6 +248,7 @@ a.link {
 }
 .li-flex-items {
 	list-style-type: none;
+	font-size: 12px;
 	padding: 0.7em;
 	margin: 7px;
 	border-radius: 5px;
