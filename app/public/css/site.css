@@ -85,11 +85,11 @@ footer a {
 	color: white!important;
 	background-color: green;
 	max-width: auto;
-	height: 25px;
+	/* height: 25px; */
 }
 .delete-button {
 	background-color: red;
-	height: 45px;
+	/* height: 45px; */
 }
 
 
@@ -220,6 +220,7 @@ a.link {
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
+	align-items: baseline;
 }
 
 
