@@ -81,6 +81,13 @@ footer a {
 .button:focus {
 	outline: 0;
 }
+.button-view-post {
+	color: white!important;
+	background-color: green;
+}
+.delete-button {
+	background-color: red;
+}
 
 
 
