@@ -237,9 +237,7 @@ a.link {
 }
 .child-flex-item {
 	align-self: flex-end;
-	/* width: 70px; */
 	margin: 3px;
-
 }
 
 
