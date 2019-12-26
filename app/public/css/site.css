@@ -217,13 +217,17 @@ a.link {
 }
 .flexbox-container {
 	display: flex;
-	flex-direction: row;
+	flex-direction: row; /* default */
 	flex-wrap: wrap;
-	justify-content: center;
-	align-items: baseline;
+	justify-content: center; /* aligns flex-items along the main axis of the flex container */
+	align-items: baseline; /* aligns flex-items along the cross axis of the flex container */
 }
+.child-flex-item {
+	align-self: flex-end;
+	/* width: 70px; */
+	margin: 3px;
 
-
+}
 
 
 /* ==========================================================================
