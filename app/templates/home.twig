@@ -24,9 +24,9 @@
                 {% for item in posts %}
                   <article>
 										<h2 class="flexbox-wrapper">
-											<a href="/post/{{ item.id }}">{{ item.title }}</a>
-											<a href="/post/{{ item.id }}" class="button button-view-post">View post</a>
-											<form method="post" action="/delete/{{ item.id }}">
+											<a href="/post/{{ item.id }}" class="child-flex-item">{{ item.title }}</a>
+											<a href="/post/{{ item.id }}" class="button button-view-post child-flex-item">View post</a>
+											<form method="post" action="/delete/{{ item.id }}" class="child-flex-item">
 												<input type="submit" value="Delete post" class="button delete-button">
 											</form>
 										</h2>
