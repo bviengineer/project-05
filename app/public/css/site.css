@@ -85,11 +85,12 @@ footer a {
 	color: white!important;
 	background-color: rgb(25, 25, 247);
 	max-width: auto;
+	border: none;
 	/* height: 25px; */
 }
 .delete-button {
 	background-color: rgb(243, 96, 96);
-	/* height: 45px; */
+	border: none;
 }
 
 
