@@ -83,12 +83,12 @@ footer a {
 }
 .button-view-post {
 	color: white!important;
-	background-color: green;
+	background-color: rgb(25, 25, 247);
 	max-width: auto;
 	/* height: 25px; */
 }
 .delete-button {
-	background-color: red;
+	background-color: rgb(243, 96, 96);
 	/* height: 45px; */
 }
 
