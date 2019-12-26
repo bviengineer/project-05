@@ -36,13 +36,13 @@
 									<h2>Edit Entry</h2>
 									{# Gets the post details from $app->get('/edit/{id}' route passed to this page from the url in the post.twig page. The route goes to the database and gets the specified post #}
 									<form action="/edit/{{ post.id }}" method="POST">
-										<label for="title"> Title</label>
+										<label for="title"> Title <span>*</span></label>
 										<input type="text" name="title"  value="{{ post.title }}"><br>
 										<label for="date"></label>
 										<!-- <input type="hidden" name="date" value={ "now"|date("m/d/Y") }}> -->
 										<label for="date"></label>
 										<input type="hidden" name="date" value="{{ post.date }}"><br>
-										<label for="entry">Entry</label>
+										<label for="entry">Entry <span>*</span></label>
 										<textarea rows="5" name="entry">{{ post.body }}</textarea>
 										<!-- Looping through list of tags stored in database for the entry
 										Marking them as checked if found in the database, else, leaving them unchecked -->
