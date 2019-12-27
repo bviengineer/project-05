@@ -143,6 +143,9 @@ a.link {
 	padding-bottom: 1px;
 	font-family: 'Noto Sans', sans-serif;
 }
+.post-body {
+	text-align: center!important;
+}
 
 
 
