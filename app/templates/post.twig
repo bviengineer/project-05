@@ -20,24 +20,24 @@
         </header>
         <section>
             <div class="container"> 
-							<div class="entry-list single">
-							<article>
-								<h1>{{ post.title }}</h1>
-								<time datetime="2016-01-31 1:00">{{ post.date}}</time>
-								<!-- Display of tags -->
-								<ul class="tags-flexbox-container">
-									<p class="li-flex-items">tags => </p>
-									{% for tag in tags %}
-											<li class="li-flex-items">{{ tag }} </li>
-									{% endfor %}
-								</ul>
-							<div class="entry">
-								<p class="post-body">{{ post.body }}</p>
-								<p><a class="link" href="/edit/{{ post.id }}">Edit Entry</a></p>
-							</div>
-						</article>
+				<div class="entry-list single">
+					<article>
+						<h1>{{ post.title }}</h1>
+						<time datetime="2016-01-31 1:00">{{ post.date}}</time>
+						<!-- Display of tags -->
+						<ul class="tags-flexbox-container">
+							<p class="li-flex-items">tags => </p>
+							{% for tag in tags %}
+								<li class="li-flex-items">{{ tag }} </li>
+							{% endfor %}
+						</ul>
+					<div class="entry">
+						<p class="post-body">{{ post.body }}</p>
+						<p><a class="link" href="/edit/{{ post.id }}">Edit Entry</a></p>
 					</div>
-				</div>
+				</article>
+			</div>
+		</div>
         </section>
         <section class="entry-comments">
             <div class="container">
