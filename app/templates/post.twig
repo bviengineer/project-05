@@ -20,10 +20,11 @@
         </header>
         <section>
             <div class="container"> 
+					{{ post.published_at|date("m/d/Y") }}
 				<div class="entry-list single">
 					<article>
 						<h1>{{ post.title }}</h1>
-						<time datetime="2016-01-31 1:00">{{ post.date}}</time>
+						<time datetime="2016-01-31 1:00">{{ post.date|date("F jS, Y")}}</time>
 						<!-- Display of tags -->
 						<ul class="tags-flexbox-container">
 							<p class="li-flex-items">tags => </p>

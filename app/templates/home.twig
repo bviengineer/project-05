@@ -23,17 +23,17 @@
                 <div class="entry-list">
                 {% for item in posts %}
                   <article>
-										<h2>
-											<a href="/post/{{ item.id }}" class="child-flex-item">{{ item.title }}</a>
-										</h2>
-										<time datetime="2016-01-31 1:00">{{ item.date }}</time><br><br>
-										<div class="flexbox-container">
-											<a href="/post/{{ item.id }}" class="button button-view-post child-flex-item">View post</a>
-											
-											<form method="post" action="/delete/{{ item.id }}" class="child-flex-item">
-												<input type="submit" value="Delete post" class="button delete-button">
-										</form>
-										</div>
+                    <h2>
+                        <a href="/post/{{ item.id }}" class="child-flex-item">{{ item.title }}</a>
+                    </h2>
+                    <time datetime="2016-01-31 1:00">{{ item.date|date("F jS, Y") }}</time><br><br>
+                    <div class="flexbox-container">
+                        <a href="/post/{{ item.id }}" class="button button-view-post child-flex-item">View post</a>
+                        
+                        <form method="post" action="/delete/{{ item.id }}" class="child-flex-item">
+                            <input type="submit" value="Delete post" class="button delete-button">
+                    </form>
+                    </div>
                   </article>
                 {% endfor %}
                 </div>
