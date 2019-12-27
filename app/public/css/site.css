@@ -114,6 +114,9 @@ footer a {
 .save-entry-button {
 	background-color: green;
 }
+.required-star {
+	color: red!important;
+}
 
 
 /* ==========================================================================
