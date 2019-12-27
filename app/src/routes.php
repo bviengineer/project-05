@@ -32,7 +32,8 @@ $app->post('/post/new', function($request, $response, $args) {
   // Getting form data with post details  
   $args = array_merge($args, $request->getParsedBody());
 
-  // Date conversion
+  // Date conversion & time capture 
+  $args['date'] = date('l, F jS, Y h:i:s a');
   // $dateArray = explode("/", $args['date']); 
   // $year = $dateArray[2];
   // $month =  date('F', $dateArray[0]);
@@ -40,6 +41,19 @@ $app->post('/post/new', function($request, $response, $args) {
   // $date = $month . " " . $day . ", " . $year;
   // $args['date'] = $date;
   //$args['date'] = date('F d, Y', $args['date']);
+  // echo "<pre>";
+  // var_dump($args);
+  // echo "</pre>";
+  //echo date('l, F jS, Y h:i:s a');
+  //echo "<pre> </pre>";
+  // $args['date'] = date('l, F jS, Y h:i:s a');
+  //var_dump($args['date']);
+  // $date = strtotime($args['date']);
+  // $gmdate = gmdate($date);
+  // var_dump($date);
+  // var_dump($gmdate);
+  // $readabledate = date($gmdate);
+  // var_dump($readabledate);
 
   // Add post
   if (!empty($args['title']) && !empty($args['date']) && !empty($args['entry'])) {
@@ -49,16 +63,16 @@ $app->post('/post/new', function($request, $response, $args) {
 
       //Add post & tag ids to junction table
       if (!empty($args['tags'])) {
-          // $getRecentPost = new Posts($this->db);
-          $recentPost = $post->getRecentPost();
-          $postId = $recentPost['id'];
+        //$getRecentPost = new Posts($this->db);
+        $recentPost = $post->getRecentPost();
+        $postId = $recentPost['id'];
 
         $tagEntries = new PostsTags($this->db);
         foreach ($args['tags'] as $tagId) {
           $insertTags = $tagEntries->addTags($postId, $tagId);
         } // end foreach 
-      } // end if
-  }
+     } // end if
+ }
   // Redirect to home page 
   return $this->response->withStatus(200)->withHeader('Location', '/'); 
 });
@@ -143,7 +157,7 @@ $app->post('/edit/{id}', function($request, $response, $args) {
         // echo "Before deleting <pre>";
         // var_dump($currentTags);
         // echo "</pre>";
-       $deleteTags = $postsTags->deleteTags($args['id']);
+        $deleteTags = $postsTags->deleteTags($args['id']);
         // echo "After deleting <pre>";
         // var_dump($deleteTags);
         // echo "</pre>";
@@ -176,16 +190,16 @@ $app->get('/post/{id}', function($request, $response, $args) {
   $results = $post->getFullPost($args['id']);
   
   // Assign a keys to the args array & store respective results of queries
-   $args['post'] = $results;
+  $args['post'] = $results;
   // echo "The post";
   // echo "<pre>";
   // var_dump($args['post']);
   // echo "</pre>";
 
-
   // Retrieve related comment(s) 
   $comm = new Comments($this->db);
   $postComm = $comm->getComments($args['id']);
+  
   // Assign a keys to the args array & store respective results of queries
   $args['comments'] = $postComm;
   // echo "The comments";
@@ -204,37 +218,39 @@ $app->get('/post/{id}', function($request, $response, $args) {
   // echo "</pre>";
 
   // Retrieve related tag(s) name(s) for specified post 
-  // if (!empty($args['tadId'])) {
-  $getTagName = new Tags($this->db);
-  $tags = []; // array for tag names
-  foreach ($args['tagId'] as $id) {
-    //echo "<pre>";
-    //var_dump($id['tag_id']);
-    //var_dump($id);  
-    //echo "</pre>";
-    $tagName = $getTagName->getTags($id['tag_id']);
-    array_push($tags, $tagName[0]['name']);
+  if (!empty($args['tagId'])) {
+    $getTagName = new Tags($this->db);
+    $tags = []; // array for tag names
+    foreach ($args['tagId'] as $id) {
+  
+    //echo "Looping through the tag IDs before getting their corresponing names<pre>";
+    // var_dump($id['tag_id']);
+    // var_dump($id);  
+    // echo "</pre>";
+  
+   $tagName = $getTagName->getTags($id['tag_id']);
+   array_push($tags, $tagName[0]['name']);
     // echo "The tag names for each tag id<pre>";
     // var_dump($tagName[0]['name']);
     // echo "</pre>";
-  // }
   }
+}
   // Assign a keys to the args array & store respective results of queries
   // $args['post'] = $results;
   // $args['comments'] = $postComm;
-  $args['tags'] = $tags;
-
+  
+ $args['tags'] = $tags;
   // echo "The tag name for each tag is in the args array<pre>";
   // var_dump($tagName[0]['name']);
   // var_dump($args['tags']);
   // echo "</pre>";
 
-  // echo "<pre>";
+  // echo "Args after looping through tags and pushing them to the array <pre>";
   // var_dump($args);
   // echo "</pre>";
 
   // View post & related comments
- return $this->view->render($response, 'post.twig', $args);
+  return $this->view->render($response, 'post.twig', $args);
 });
 
 // Add comment to a specific post
