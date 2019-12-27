@@ -97,7 +97,7 @@ footer a {
 	background-color: rgb(241, 237, 237);
 	color: green!important;
 }
-.delete-button {
+.delete-button, .delete-post-button {
 	background-color: rgb(241, 76, 76);
 	border: none;
 	border-radius: 5px;
