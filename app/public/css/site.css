@@ -62,14 +62,17 @@ footer a {
 	text-transform: uppercase;
 	/* background: #000; */
 	/* border: 3px solid #000; */
-	background-color:  rgb(34, 32, 32);
-	border: 3px solid  rgb(34, 32, 32);
+	/* background-color:  rgb(34, 32, 32); */
+	/* border: 3px solid  rgb(34, 32, 32); */
+	background-color: rgb(25, 25, 247);
 	border-radius: 4px;
 	text-decoration: none;
 	color: #FFF;
 	font-weight: bold;
 	font-size: 13px;
 	font-family: 'Noto Sans', sans-serif;
+	/* Box shadow property obtained for W3Schools https://www.w3schools.com/css/css3_buttons.asp*/
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .button.button-secondary {
 	background: transparent;
