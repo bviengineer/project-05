@@ -111,6 +111,9 @@ footer a {
 	background-color: rgb(241, 237, 237);
 	color: red!important;
 }
+.save-entry-button {
+	background-color: green;
+}
 
 
 /* ==========================================================================
