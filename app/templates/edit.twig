@@ -21,73 +21,73 @@
         <section>
             <div class="container">
                 <div class="edit-entry">	
-									<h2>Edit Entry</h2>
-									{# Gets the post details from $app->get('/edit/{id}' route passed to this page from the url in the post.twig page. The route goes to the database and gets the specified post #}
-									<form action="/edit/{{ post.id }}" method="POST">
-										<label for="title"> Title <span class="required-star">*</span></label>
-										<input type="text" name="title"  value="{{ post.title }}"><br>
-										<label for="date"></label>
-										<!-- <input type="hidden" name="date" value={ "now"|date("m/d/Y") }}> -->
-										<label for="date"></label>
-										<input type="hidden" name="date" value="{{ post.date }}"><br>
-										<label for="entry">Entry <span class="required-star">*</span></label>
-										<textarea rows="5" name="entry">{{ post.body }}</textarea>
-										<!-- Looping through list of tags stored in database for the entry
-										Marking them as checked if found in the database, else, leaving them unchecked -->
-									{% if tagId is empty %}
-										<input type="checkbox" name="tags[]" value="1">Technology<br>
-										<input type="checkbox" name="tags[]" value="2">Travel<br>
-										<input type="checkbox" name="tags[]" value="3">Personal<br>
-										<input type="checkbox" name="tags[]" value="4">Other<br>
-										<input type="checkbox" name="tags[]" value="5">Health and Wellness<br>
-									{% endif %} 
-									{% for tag in tagId %}
-										<!-- Checking for Technology tag -->
-										{% if tag.tag_id == 1 %}
-											<input type="checkbox" name="tags[]" value="1" checked>Technology<br>
-										{% else %}
-											<input type="checkbox" name="tags[]" value="1">Technology<br>
-										{% endif %}
-									
-									<!-- Checking for Travel tag -->
-									{% if tag.tag_id == 2 %}
-										<input type="checkbox" name="tags[]" value="2" checked>Travel<br>
-									{% else %}
-										<input type="checkbox" name="tags[]" value="2">Travel<br>
-									{% endif %}
-									
-									<!-- Checking for Personal tag -->
-									{% if tag.tag_id == 3 %}
-										<input type="checkbox" name="tags[]" value="3" checked>Personal<br>
-									{% else %}
-										<input type="checkbox" name="tags[]" value="3">Personal<br>
-									{% endif %}
-									
-									<!-- Checking for Other tag -->
-									{% if tag.tag_id == 4 %}
-										<input type="checkbox" name="tags[]" value="4" checked>Other<br>
-									{% else %}
-										<input type="checkbox" name="tags[]" value="4">Other<br>
-									{% endif %}
-									
-									<!-- Checking for Health & Wellness tag -->
-									{% if tag.tag_id == 5 %}
-										<input type="checkbox" name="tags[]" value="5" checked>Health and Wellness<br>
-									{% else %}
-										<input type="checkbox" name="tags[]" value="5">Health and Wellness<br>
-									{% endif %}
-								{% endfor %}
-								<br>
-									<!-- <input type="submit" value="Publish Entry" class="button"> -->
-									<input type="submit" value="Save Entry" class="button save-entry-button">
-									<a href="/post/{{ post.id }}" class="button button-secondary">Cancel</a>
-								</form>
-								<br><br>
-								<form action="/delete/{{ post.id}}" method="POST">
-									<input type="submit" value="Delete Post" name="delete" class="button delete-button">
-								</form>
-						</div>
-					</div>
+						<h2>Edit Entry</h2>
+						{# Gets the post details from $app->get('/edit/{id}' route passed to this page from the url in the post.twig page. The route goes to the database and gets the specified post #}
+						<form action="/edit/{{ post.id }}" method="POST">
+							<label for="title"> Title <span class="required-star">*</span></label>
+							<input type="text" name="title"  value="{{ post.title }}"><br>
+							<label for="date"></label>
+							<!-- <input type="hidden" name="date" value={ "now"|date("m/d/Y") }}> -->
+							<label for="date"></label>
+							<input type="hidden" name="date" value="{{ post.date }}"><br>
+							<label for="entry">Entry <span class="required-star">*</span></label>
+							<textarea rows="5" name="entry">{{ post.body }}</textarea>
+							<!-- Looping through list of tags stored in database for the entry
+							Marking them as checked if found in the database, else, leaving them unchecked -->
+						{% if tagId is empty %}
+							<input type="checkbox" name="tags[]" value="1">Technology<br>
+							<input type="checkbox" name="tags[]" value="2">Travel<br>
+							<input type="checkbox" name="tags[]" value="3">Personal<br>
+							<input type="checkbox" name="tags[]" value="4">Other<br>
+							<input type="checkbox" name="tags[]" value="5">Health and Wellness<br>
+						{% endif %} 
+						{% for tag in tagId %}
+							<!-- Checking for Technology tag -->
+							{% if tag.tag_id == 1 %}
+								<input type="checkbox" name="tags[]" value="1" checked>Technology<br>
+							{% else %}
+								<input type="checkbox" name="tags[]" value="1">Technology<br>
+							{% endif %}
+						
+					<!-- Checking for Travel tag -->
+					{% if tag.tag_id == 2 %}
+						<input type="checkbox" name="tags[]" value="2" checked>Travel<br>
+					{% else %}
+						<input type="checkbox" name="tags[]" value="2">Travel<br>
+					{% endif %}
+					
+					<!-- Checking for Personal tag -->
+					{% if tag.tag_id == 3 %}
+						<input type="checkbox" name="tags[]" value="3" checked>Personal<br>
+					{% else %}
+						<input type="checkbox" name="tags[]" value="3">Personal<br>
+					{% endif %}
+					
+					<!-- Checking for Other tag -->
+					{% if tag.tag_id == 4 %}
+						<input type="checkbox" name="tags[]" value="4" checked>Other<br>
+					{% else %}
+						<input type="checkbox" name="tags[]" value="4">Other<br>
+					{% endif %}
+					
+					<!-- Checking for Health & Wellness tag -->
+					{% if tag.tag_id == 5 %}
+						<input type="checkbox" name="tags[]" value="5" checked>Health and Wellness<br>
+					{% else %}
+						<input type="checkbox" name="tags[]" value="5">Health and Wellness<br>
+					{% endif %}
+				{% endfor %}
+				<br>
+					<!-- <input type="submit" value="Publish Entry" class="button"> -->
+					<input type="submit" value="Save Entry" class="button save-entry-button">
+					<a href="/post/{{ post.id }}" class="button button-secondary">Cancel</a>
+				</form>
+				<br><br>
+				<form action="/delete/{{ post.id}}" method="POST">
+					<input type="submit" value="Delete Post" name="delete" class="button delete-button">
+				</form>
+		</div>
+	</div>
         </section>
         <footer>
             <div>
