@@ -49,7 +49,7 @@
                         	<strong>{{item.name}}</strong>
                         	<time datetime="2016-01-31 1:00">{{ item.date|date("F jS, Y") }}</time>
                         	<p> {{ item.body }} </p>
-								<hr>
+							<hr>
 						{% endfor %}
 					{% else %}
 					{# Having to loop through although it's only one comment b/c the database is returning a collection (fetchAll) and not just a single item (fetch) #}
