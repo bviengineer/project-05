@@ -257,6 +257,15 @@ $app->get('/post/{id}', function($request, $response, $args) {
 $app->post('/post/{id}', function($request, $response, $args) {
   // Getting comment sent for posting
   $args = array_merge($args, $request->getParsedBody());
+  // echo "<pre>";
+  // var_dump($args);
+  // echo "</pre>";
+
+  $args['date'] = $args['date'] = date('l, F jS, Y h:i:s a');
+
+  // echo "<pre>";
+  // var_dump($args);
+  // echo "</pre>";
   
   // $dateArray = explode("/", $args['date']); 
   // $year = $dateArray[2];
@@ -289,32 +298,4 @@ $app->post('/delete/{id}', function($request, $response, $args) {
 
   // Redirect to home page 
   return $this->response->withStatus(200)->withHeader('Location', '/');
-});
-
-
-
-// My test route using twig-view 
-$app->get('/hello/{name}', function ($request, $response, $args) {
-  return $this->view->render($response, 'index.twig', [
-      'name' => $args
-  ]);
-});
-// my test route 
-$app->get('/test/{method}', function($request, $response) {
-    $method = $request->getMethod();
-    return $method;
-});
-// my test db query
-$app->get('/comments', function() {
-	$comm = new Comments($this->db);
-	$results = $comm->getComments();
-	var_dump($results);
-});
-// Test route for all posts
-$app->get('/pm', function() {
-  $fullPost = new Posts($this->db);  
-  $results = $fullPost->getFullPost();
-	echo "<pre>";	
-	var_dump($results);
-	echo "</pre>";
 });
