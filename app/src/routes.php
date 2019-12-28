@@ -96,13 +96,13 @@ $app->get('/edit/{id}', function($request, $response, $args) {
   // Get tags associated with the blog entry, if any
   $getTags = new PostsTags($this->db);
   $tags = $getTags->getTags($args['id']);
-  $args['tagId'] = $tags;
-  // $args['tagId'] = [];
+  $args['tagIds'] = $tags;
+  $args['tagId'] = [];
   // Adding each tag_id value to the $args['tagId] array without inner array
-  // for ($i = 0; $i < count($tags); $i++) {
-  //   $tagId = $tags[$i]['tag_id'];
-  //   array_push($args['tagId'], $tagId);
-  // }
+  for ($i = 0; $i < count($tags); $i++) {
+    $tagId = $tags[$i]['tag_id'];
+    array_push($args['tagId'], $tagId);
+  }
 
   // foreach ($args['tagIds'] as $tag) {
   //   echo "<pre>";
