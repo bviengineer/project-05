@@ -41,64 +41,42 @@
 							<input type="checkbox" name="tags[]" value="4">Other<br>
 							<input type="checkbox" name="tags[]" value="5">Health and Wellness<br>
 						{% endif %} 
-
-						{% for tag in tagId %}
-								{{ if 1|string in tag.tag_id }}
-								{{ tag.tag_tag_id}}
-						{% endfor %}
-						{% for tag in tagId %}
-								{{ if 2 in tag.tag_id }}
-								{{ tag.tag_tag_id}}
-						{% endfor %}
-						{% for tag in tagId %}
-								{{ if 3 in tag.tag_id }}
-								{{ tag.tag_tag_id}}
-						{% endfor %}
-						{% for tag in tagId %}
-								{{ if 4 in tag.tag_id }}
-								{{ tag.tag_tag_id}}
-						{% endfor %}
-						{% for tag in tagId %}
-								{{ if 5 in tag.tag_id }}
-								{{ tag.tag_tag_id}}
-						{% endfor %}
-						
-						{% for tag in tagId %}
+						{% if tagId is not empty %}
 							<!-- Checking for Technology tag -->
-							{% if tag.tag_id == 1 %}
+							{% if 1 in tagId %}
 								<input type="checkbox" name="tags[]" value="1" checked>Technology<br>
 							{% else %}
 								<input type="checkbox" name="tags[]" value="1">Technology<br>
 							{% endif %}
 						
-					<!-- Checking for Travel tag -->
-					{% if tag.tag_id == 2 %}
-						<input type="checkbox" name="tags[]" value="2" checked>Travel<br>
-					{% else %}
-						<input type="checkbox" name="tags[]" value="2">Travel<br>
-					{% endif %}
+							<!-- Checking for Travel tag -->
+							{% if 2 in tagId %}
+								<input type="checkbox" name="tags[]" value="2" checked>Travel<br>
+							{% else %}
+								<input type="checkbox" name="tags[]" value="2">Travel<br>
+							{% endif %}
 					
-					<!-- Checking for Personal tag -->
-					{% if tag.tag_id == 3 %}
-						<input type="checkbox" name="tags[]" value="3" checked>Personal<br>
-					{% else %}
-						<input type="checkbox" name="tags[]" value="3">Personal<br>
-					{% endif %}
-					
-					<!-- Checking for Other tag -->
-					{% if tag.tag_id == 4 %}
-						<input type="checkbox" name="tags[]" value="4" checked>Other<br>
-					{% else %}
-						<input type="checkbox" name="tags[]" value="4">Other<br>
-					{% endif %}
-					
-					<!-- Checking for Health & Wellness tag -->
-					{% if tag.tag_id == 5 %}
-						<input type="checkbox" name="tags[]" value="5" checked>Health and Wellness<br>
-					{% else %}
-						<input type="checkbox" name="tags[]" value="5">Health and Wellness<br>
-					{% endif %}
-				{% endfor %}
+							<!-- Checking for Personal tag -->
+							{% if 3 in tagId %}
+								<input type="checkbox" name="tags[]" value="3" checked>Personal<br>
+							{% else %}
+								<input type="checkbox" name="tags[]" value="3">Personal<br>
+							{% endif %}
+							
+							<!-- Checking for Other tag -->
+							{% if 4 in tagId %}
+								<input type="checkbox" name="tags[]" value="4" checked>Other<br>
+							{% else %}
+								<input type="checkbox" name="tags[]" value="4">Other<br>
+							{% endif %}
+							
+							<!-- Checking for Health & Wellness tag -->
+							{% if 5 in tagId %}
+								<input type="checkbox" name="tags[]" value="5" checked>Health and Wellness<br>
+							{% else %}
+								<input type="checkbox" name="tags[]" value="5">Health and Wellness<br>
+							{% endif %}
+				{% endif %}
 				<br>
 					<!-- <input type="submit" value="Publish Entry" class="button"> -->
 					<input type="submit" value="Save Entry" class="button save-entry-button">
