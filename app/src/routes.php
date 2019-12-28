@@ -261,7 +261,7 @@ $app->post('/post/{id}', function($request, $response, $args) {
   // var_dump($args);
   // echo "</pre>";
 
-  $args['date'] = $args['date'] = date('l, F jS, Y h:i:s a');
+  $args['date'] = date('l, F jS, Y h:i:s a');
 
   // echo "<pre>";
   // var_dump($args);
