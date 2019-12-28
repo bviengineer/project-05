@@ -47,7 +47,8 @@
 					{% if comments|length > 1 %}
                         {% for item in comments %}
                         	<strong>{{item.name}}</strong>
-                        	<time datetime="2016-01-31 1:00">{{ item.date|date("F jS, Y") }}</time>
+							{# <time datetime="2016-01-31 1:00">{{ item.date|date("F jS, Y") }}</time> #}
+							<time datetime="2016-01-31 1:00">{{ item.date|date("F jS, Y") }}</time>
                         	<p> {{ item.body }} </p>
 							<hr>
 						{% endfor %}
