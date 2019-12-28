@@ -35,7 +35,7 @@ $app->post('/post/new', function($request, $response, $args) {
   // Date conversion & time capture 
   //$args['date'] = date('l, F jS, Y h:i:s a');
   
-  // UTC time 
+  // Ressign date / time as a UTC ISO string 
   $args['date'] = date('c');
   // $dateArray = explode("/", $args['date']); 
   // $year = $dateArray[2];
@@ -264,7 +264,7 @@ $app->post('/post/{id}', function($request, $response, $args) {
   // var_dump($args);
   // echo "</pre>";
 
-  // UTC time at the time of comment
+  // Ressign date / time as a UTC ISO string
   $args['date'] = date('c');
 
   //$args['date'] = date('l, F jS, Y h:i:s a'); // day of wk, Month(th), Year 
