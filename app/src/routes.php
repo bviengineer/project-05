@@ -33,7 +33,10 @@ $app->post('/post/new', function($request, $response, $args) {
   $args = array_merge($args, $request->getParsedBody());
 
   // Date conversion & time capture 
-  $args['date'] = date('l, F jS, Y h:i:s a');
+  //$args['date'] = date('l, F jS, Y h:i:s a');
+  
+  // UTC time 
+  $args['date'] = date('c');
   // $dateArray = explode("/", $args['date']); 
   // $year = $dateArray[2];
   // $month =  date('F', $dateArray[0]);
@@ -261,7 +264,7 @@ $app->post('/post/{id}', function($request, $response, $args) {
   // var_dump($args);
   // echo "</pre>";
 
-  // UTC time 
+  // UTC time at the time of comment
   $args['date'] = date('c');
 
   //$args['date'] = date('l, F jS, Y h:i:s a'); // day of wk, Month(th), Year 
@@ -285,8 +288,8 @@ $app->post('/post/{id}', function($request, $response, $args) {
   // $args['date'] = $date;
 
   // Add comment to commments table 
-  // $comm = new Comments($this->db);
-  // $addComm = $comm->addComment($args['name'], $args['comment'], $args['id'], $args['date']);
+  $comm = new Comments($this->db);
+  $addComm = $comm->addComment($args['name'], $args['comment'], $args['id'], $args['date']);
 
   // Display post with added comment
   return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id']);
