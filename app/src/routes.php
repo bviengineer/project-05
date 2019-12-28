@@ -261,10 +261,18 @@ $app->post('/post/{id}', function($request, $response, $args) {
   // var_dump($args);
   // echo "</pre>";
 
-  $args['date'] = date('l, F jS, Y h:i:s a'); // day of wk, Month(th), Year 
+  // UTC time 
+  $args['date'] = date('c');
 
+  //$args['date'] = date('l, F jS, Y h:i:s a'); // day of wk, Month(th), Year 
   //$args['date'] = date('m-d-Y, H:i:s');
-
+  //$date = date('Y-m-d, H:i:s');
+  //var_dump($date);
+  //$date2 = date(date('c'));
+  //var_dump($date2);
+  //var_dump(date($date));
+  //var_dump(date($date2));
+  
   // echo "<pre>";
   // var_dump($args);
   // echo "</pre>";
@@ -277,8 +285,8 @@ $app->post('/post/{id}', function($request, $response, $args) {
   // $args['date'] = $date;
 
   // Add comment to commments table 
-  $comm = new Comments($this->db);
-  $addComm = $comm->addComment($args['name'], $args['comment'], $args['id'], $args['date']);
+  // $comm = new Comments($this->db);
+  // $addComm = $comm->addComment($args['name'], $args['comment'], $args['id'], $args['date']);
 
   // Display post with added comment
   return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id']);
