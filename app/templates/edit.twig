@@ -41,6 +41,28 @@
 							<input type="checkbox" name="tags[]" value="4">Other<br>
 							<input type="checkbox" name="tags[]" value="5">Health and Wellness<br>
 						{% endif %} 
+
+						{% for tag in tagId %}
+								{{ if 1|string in tag.tag_id }}
+								{{ tag.tag_tag_id}}
+						{% endfor %}
+						{% for tag in tagId %}
+								{{ if 2 in tag.tag_id }}
+								{{ tag.tag_tag_id}}
+						{% endfor %}
+						{% for tag in tagId %}
+								{{ if 3 in tag.tag_id }}
+								{{ tag.tag_tag_id}}
+						{% endfor %}
+						{% for tag in tagId %}
+								{{ if 4 in tag.tag_id }}
+								{{ tag.tag_tag_id}}
+						{% endfor %}
+						{% for tag in tagId %}
+								{{ if 5 in tag.tag_id }}
+								{{ tag.tag_tag_id}}
+						{% endfor %}
+						
 						{% for tag in tagId %}
 							<!-- Checking for Technology tag -->
 							{% if tag.tag_id == 1 %}
