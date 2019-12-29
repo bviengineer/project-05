@@ -1,5 +1,4 @@
 <?php
-//date_default_timezone_set('UTC');
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
