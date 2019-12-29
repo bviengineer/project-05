@@ -77,7 +77,7 @@ $app->post('/post/new', function($request, $response, $args) {
      } // end if
  }
   // Redirect to home page 
-  return $this->response->withStatus(200)->withHeader('Location', '/'); 
+  return $this->response->withStatus(302)->withHeader('Location', '/'); 
 });
 
 // View post to be edited in edit mode (field values can be changed)
@@ -184,7 +184,7 @@ $app->post('/edit/{id}', function($request, $response, $args) {
       $deleteTags = $postsTags->deleteTags($args['id']);
   }
   // View updated post 
-  return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id'] );
+  return $this->response->withStatus(302)->withHeader('Location', '/post/'. $args['id'] );
 });
 
 // Display a single post
@@ -293,7 +293,7 @@ $app->post('/post/{id}', function($request, $response, $args) {
   $addComm = $comm->addComment($args['name'], $args['comment'], $args['id'], $args['date']);
 
   // Display post with added comment
-  return $this->response->withStatus(200)->withHeader('Location', '/post/'. $args['id']);
+  return $this->response->withStatus(302)->withHeader('Location', '/post/'. $args['id']);
 });
 
 // Delete a post, its comments & tags
@@ -311,5 +311,5 @@ $app->post('/delete/{id}', function($request, $response, $args) {
   $deleteTags = $postsTags->deleteTags($args['id']);
 
   // Redirect to home page 
-  return $this->response->withStatus(200)->withHeader('Location', '/');
+  return $this->response->withStatus(302)->withHeader('Location', '/');
 });
