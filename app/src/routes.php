@@ -292,9 +292,10 @@ $app->post('/post/{id}', function($request, $response, $args) {
   $comm = new Comments($this->db);
   $addComm = $comm->addComment($args['name'], $args['comment'], $args['id'], $args['date']);
 
+  $url = $this->router->pathFor('comments', ['id' => $args['id'], 'title' => $args['title'] ]);
   // Display post with added comment
-  return $this->response->withStatus(302)->withHeader('Location', '/post/'. $args['id']);
-});
+  return $this->response->withStatus(302)->withHeader('Location', $url);
+})->setName("comments");
 
 // Delete a post, its comments & tags
 $app->post('/delete/{id}', function($request, $response, $args) {
