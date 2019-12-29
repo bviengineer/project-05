@@ -32,8 +32,8 @@
 							<input type="hidden" name="date" value="{{ post.date }}"><br>
 							<label for="entry">Entry <span class="required-star">*</span></label>
 							<textarea rows="5" name="entry">{{ post.body }}</textarea>
-							<!-- Looping through list of tags stored in database for the entry
-							Marking them as checked if found in the database, else, leaving them unchecked -->
+				
+						{# Verifying if there are tags for a specific entry and if not, simply print the checkboxes #}
 						{% if tagId is empty %}
 							<input type="checkbox" name="tags[]" value="1">Technology<br>
 							<input type="checkbox" name="tags[]" value="2">Travel<br>
@@ -41,6 +41,8 @@
 							<input type="checkbox" name="tags[]" value="4">Other<br>
 							<input type="checkbox" name="tags[]" value="5">Health and Wellness<br>
 						{% endif %} 
+						
+						<!-- If tags exisit for an entry mark the selected ones as checked and the non-seleted ones without a check -->
 						{% if tagId is not empty %}
 							<!-- Checking for Technology tag -->
 							{% if 1 in tagId %}
