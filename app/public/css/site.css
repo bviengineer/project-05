@@ -159,7 +159,7 @@ a.link {
 	/* text-align: center!important; */
 	background-color: rgb(249, 251, 252);
 	border-radius: 10px;
-	height: 400px;
+	height: auto;
 	padding: 3em;
 	/* Box shadow property obtained for W3Schools https://www.w3schools.com/css/css3_buttons.asp*/
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
