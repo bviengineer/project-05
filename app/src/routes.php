@@ -191,7 +191,7 @@ $app->post('/delete/{id}', function($request, $response, $args) {
 
   // Delete tag(s) for specified post 
   $postsTags = new PostsTags($this->db);
-  if (!empty($postTags->getTags($args['id']))) {
+  if (!empty($postsTags->getTags($args['id']))) {
     $deleteTags = $postsTags->deleteTags($args['id']);
   }
 
