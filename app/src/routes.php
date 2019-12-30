@@ -70,15 +70,17 @@ $app->get('/edit/{id}', function($request, $response, $args) {
   $args['post'] = $results;
 
   // Get tags associated with the blog entry, if any
-  $getTags = new PostsTags($this->db);
-  $tags = $getTags->getTags($args['id']);
-  $args['tagIds'] = $tags;
-  $args['tagId'] = [];
+    $getTags = new PostsTags($this->db);
+    $tags = $getTags->getTags($args['id']);
+    if (!empty($tags)) {
+      $args['tagIds'] = $tags;
+      $args['tagId'] = [];
   
-  // Adding each tag_id value to the $args['tagId] array without inner array
-  for ($i = 0; $i < count($tags); $i++) {
-    $tagId = $tags[$i]['tag_id'];
-    array_push($args['tagId'], $tagId);
+    // Adding each tag_id value to the $args['tagId] array without inner array
+    for ($i = 0; $i < count($tags); $i++) {
+      $tagId = $tags[$i]['tag_id'];
+      array_push($args['tagId'], $tagId);
+    }
   }
   // Display the post
   return $this->view->render($response, 'edit.twig', $args);
@@ -124,6 +126,7 @@ $app->get('/post/{id}', function($request, $response, $args) {
   // Assign a keys to the args array & store respective results of queries
   $args['post'] = $results;
 
+  // Add conditional here to check if a post has comments before making call to database 
   // Retrieve related comment(s) 
   $comm = new Comments($this->db);
   $postComm = $comm->getComments($args['id']);
@@ -141,15 +144,17 @@ $app->get('/post/{id}', function($request, $response, $args) {
   if (!empty($args['tagId'])) {
       $getTagName = new Tags($this->db);
       $tags = []; // array for tag names
+
+      // Retrieves tag names only and pushes them to a dedicated array 
       foreach ($args['tagId'] as $id) {
-    
-    $tagName = $getTagName->getTags($id['tag_id']);
-    array_push($tags, $tagName[0]['name']);
-  }
-} 
- $args['tags'] = $tags;
-// View post & related comments
-return $this->view->render($response, 'post.twig', $args);
+        $tagName = $getTagName->getTags($id['tag_id']);
+        array_push($tags, $tagName[0]['name']);
+      }
+  } 
+  $args['tags'] = $tags;
+  
+  // View post & related comments
+  return $this->view->render($response, 'post.twig', $args);
 });
 
 // Add comment to a specific post
