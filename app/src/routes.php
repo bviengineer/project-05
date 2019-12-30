@@ -92,15 +92,15 @@ $app->post('/edit/{id}', function($request, $response, $args) {
   $args = array_merge($args, $request->getParsedBody());
 
   // Verifing completed fields
-  if (!empty($args['title']) && !empty($args['entry'])) { //validate date as well?
+  if (!empty($args['title']) && !empty($args['entry'])) {
       // Update post in database 
       $post = new Posts($this->db);
       $results = $post->updatePost($args['id'], $args['title'], $args['date'], $args['entry']);
   }
-  // Instance of to PostTags junction class
+  // Instance of PostTags junction class
   $postsTags = new PostsTags($this->db);
 
-  // Delete existing tags selection or deselection if any, then add the checked ones if any
+  // Delete existing tags selection or deselection of tags if any, then add the checked ones if any
   if (!empty($args['tags'])) {
       if ($postsTags->getTags($args['id'])) {
           $deleteTags = $postsTags->deleteTags($args['id']);
@@ -123,33 +123,35 @@ $app->get('/post/{id}', function($request, $response, $args) {
   $post = new Posts($this->db);
   $results = $post->getFullPost($args['id']);
   
-  // Assign a keys to the args array & store respective results of queries
+  // Assign key to the args array for the post & store the results
   $args['post'] = $results;
-
-  // Add conditional here to check if a post has comments before making call to database 
-  // Retrieve related comment(s) 
+ 
+  // Check for and retrieve related comment(s) 
   $comm = new Comments($this->db);
   $postComm = $comm->getComments($args['id']);
-  
-  // Assign a keys to the args array & store respective results of queries
-  $args['comments'] = $postComm;
 
-  // Add conditional here to check if a post has tags before making call to database 
-  // Retrieve tag id(s) for a specified post
+  // Assign key to the args array for comments & store results of query
+  if (!empty($postComm)) {
+    $args['comments'] = $postComm;
+  }
+
+  // Check for and retrieve tag id(s) for the specified post
   $getTagId = new PostsTags($this->db);
   $tagId = $getTagId->getTags($args['id']);
-  $args['tagId'] = $tagId;
-
-  // Retrieve related tag(s) name(s) for specified post 
-  if (!empty($args['tagId'])) {
+  
+  if (!empty($tagId)) {
+// NOTE TO SELF: do I truly need to pass $tagId to $args if the result is not being passed to the view and only being used to retrieve data from the dbase?
+    $args['tagId'] = $tagId; 
+    // Retrieve related tag(s) name(s) for specified post 
+    //if (!empty($args['tagId'])) {
       $getTagName = new Tags($this->db);
       $tags = []; // array for tag names
 
-      // Retrieves tag names only and pushes them to a dedicated array 
-      foreach ($args['tagId'] as $id) {
-        $tagName = $getTagName->getTags($id['tag_id']);
-        array_push($tags, $tagName[0]['name']);
-      }
+    // Retrieves tag names only and pushes them to a dedicated array 
+    foreach ($args['tagId'] as $id) {
+      $tagName = $getTagName->getTags($id['tag_id']);
+      array_push($tags, $tagName[0]['name']);
+    }
   } 
   $args['tags'] = $tags;
   
@@ -183,11 +185,15 @@ $app->post('/delete/{id}', function($request, $response, $args) {
 
   // Delete comment(s) for specified post 
   $comm = new Comments($this->db);
-  $deleteComm = $comm->deleteComment($args['id']);
+  if (!empty($comm->getComments($args['id']))) {
+    $deleteComm = $comm->deleteComment($args['id']);
+  }
 
   // Delete tag(s) for specified post 
   $postsTags = new PostsTags($this->db);
-  $deleteTags = $postsTags->deleteTags($args['id']);
+  if (!empty($postTags->getTags($args['id']))) {
+    $deleteTags = $postsTags->deleteTags($args['id']);
+  }
 
   // Redirect to home page 
   return $this->response->withStatus(302)->withHeader('Location', '/');
