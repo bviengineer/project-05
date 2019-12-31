@@ -31,30 +31,27 @@ $app->get('/post/new', function($request, $response) {
 $app->post('/post/new', function($request, $response, $args) {
   // Getting form data with post details  
   $args = array_merge($args, $request->getParsedBody());
-
-  // Date conversion & time capture 
-  //$args['date'] = date('l, F jS, Y h:i:s a');
-  
+ 
   // Reassign date / time as a UTC ISO string 
   $args['date'] = date('c');
   
   // Add post
   if (!empty($args['title']) && !empty($args['date']) && !empty($args['entry'])) {
-      // Add post to database 
+	// Post
       $post = new Posts($this->db);
       $results = $post->addPost($args['title'], $args['date'], $args['entry']);
 
-      //Add post & tag ids to junction table
+      // Add post & tag ids to junction table
       if (!empty($args['tags'])) {
-        //$getRecentPost = new Posts($this->db);
         $recentPost = $post->getRecentPost();
         $postId = $recentPost['id'];
 
         $tagEntries = new PostsTags($this->db);
-        foreach ($args['tags'] as $tagId) {
-          $insertTags = $tagEntries->addTags($postId, $tagId);
-        } // end foreach 
-     } // end if
+	   
+	   foreach ($args['tags'] as $tagId) {
+     	$insertTags = $tagEntries->addTags($postId, $tagId);
+        }
+     }
  }
   // Redirect to home page 
   return $this->response->withStatus(302)->withHeader('Location', '/'); 
@@ -72,6 +69,7 @@ $app->get('/edit/{id}', function($request, $response, $args) {
   // Get tags associated with the blog entry, if any
     $getTags = new PostsTags($this->db);
     $tags = $getTags->getTags($args['id']);
+  
     if (!empty($tags)) {
       $args['tagIds'] = $tags;
       $args['tagId'] = [];
@@ -100,7 +98,8 @@ $app->post('/edit/{id}', function($request, $response, $args) {
   // Instance of PostTags junction class
   $postsTags = new PostsTags($this->db);
 
-  // Delete existing tags selection or deselection of tags if any, then add the checked ones if any
+  // Delete existing tags selection or deselection of tags if any, 
+  // Then add the checked ones if any
   if (!empty($args['tags'])) {
       if ($postsTags->getTags($args['id'])) {
           $deleteTags = $postsTags->deleteTags($args['id']);
@@ -119,31 +118,30 @@ $app->post('/edit/{id}', function($request, $response, $args) {
 
 // Display a single post
 $app->get('/post/{id}', function($request, $response, $args) {
-  // Retrieve specified post from database 
+  // Get post from database 
   $post = new Posts($this->db);
   $results = $post->getFullPost($args['id']);
   
   // Assign key to the args array for the post & store the results
   $args['post'] = $results;
- 
-  // Check for and retrieve related comment(s) 
+  
+  // Check for & retrieve any related comment(s) 
   $comm = new Comments($this->db);
   $postComm = $comm->getComments($args['id']);
-
+  
   // Assign key to the args array for comments & store results of query
   if (!empty($postComm)) {
     $args['comments'] = $postComm;
   }
-
   // Check for and retrieve tag id(s) for the specified post
   $getTagId = new PostsTags($this->db);
   $tagId = $getTagId->getTags($args['id']);
   
+  // Retrieve related tag(s) name(s) for specified post
   if (!empty($tagId)) {
-    // Retrieve related tag(s) name(s) for specified post 
     $getTagName = new Tags($this->db);
-    $tags = []; // array for tag names
-
+    // Array for tag names
+    $tags = [];
     // Retrieves tag names only and pushes them to a dedicated array 
     foreach ($tagId as $id) {
       $tagName = $getTagName->getTags($id['tag_id']);
@@ -151,7 +149,6 @@ $app->get('/post/{id}', function($request, $response, $args) {
     }
   } 
   $args['tags'] = $tags;
-  
   // View post & related comments
   return $this->view->render($response, 'post.twig', $args);
 });
@@ -174,22 +171,19 @@ $app->post('/post/{id}', function($request, $response, $args) {
 
 // Delete a post, its comments & tags
 $app->post('/delete/{id}', function($request, $response, $args) {
-  // Delete specified post
+  // Post
   $post = new Posts($this->db);
   $deletePost = $post->deletePost($args['id']);
-
-  // Delete comment(s) for specified post 
+  // Comment(s) 
   $comm = new Comments($this->db);
   if (!empty($comm->getComments($args['id']))) {
     $deleteComm = $comm->deleteComment($args['id']);
   }
-
-  // Delete tag(s) for specified post 
+  // Tag(s) 
   $postsTags = new PostsTags($this->db);
   if (!empty($postsTags->getTags($args['id']))) {
     $deleteTags = $postsTags->deleteTags($args['id']);
   }
-
   // Redirect to home page 
   return $this->response->withStatus(302)->withHeader('Location', '/');
 });
