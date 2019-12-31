@@ -140,15 +140,12 @@ $app->get('/post/{id}', function($request, $response, $args) {
   $tagId = $getTagId->getTags($args['id']);
   
   if (!empty($tagId)) {
-// NOTE TO SELF: do I truly need to pass $tagId to $args if the result is not being passed to the view and only being used to retrieve data from the dbase?
-    $args['tagId'] = $tagId; 
     // Retrieve related tag(s) name(s) for specified post 
-    //if (!empty($args['tagId'])) {
-      $getTagName = new Tags($this->db);
-      $tags = []; // array for tag names
+    $getTagName = new Tags($this->db);
+    $tags = []; // array for tag names
 
     // Retrieves tag names only and pushes them to a dedicated array 
-    foreach ($args['tagId'] as $id) {
+    foreach ($tagId as $id) {
       $tagName = $getTagName->getTags($id['tag_id']);
       array_push($tags, $tagName[0]['name']);
     }
