@@ -9,7 +9,9 @@ This project uses the slim micro framework, the twig template engine and sqlite 
 
 **Edit & update post**: To edit a post, simply click on the title of the post or the view post button under the name of post and near hte bottom of the post, select edit entry. 
 
-**Delete post** A post can deleted by using the delete butotn under the name of the post while on the home page or by clicking on the specific post and then clicking on the delete button at the bottom of the post page. 
+**Delete post**: A post can deleted by using the delete butotn under the name of the post while on the home page or by clicking on the specific post and then clicking on the delete button at the bottom of the post page. 
+
+**Comments**: A visitor to the site may add any number of comments to a post.
 
 ## Screenshots
  ![List of posts](img/blog_homepage.png)
