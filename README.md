@@ -20,7 +20,7 @@ This project uses the slim micro framework, the twig template engine and sqlite 
 1. Download and unzip the project folder
 2.  Run ```compser install``` to install the project dependencies
 3. Use a tool like MAMP and point to the ```index.php``` inside of the public folder and then start your server
-4. Visit ```*localhost:[PORT_NUM]*``` replacing [PORT_NUM] with the apppropriate port number configured on your php server, to view and interact with the blog
+4. Visit ```localhost:[PORT_NUM]``` replacing ```[PORT_NUM]``` with the apppropriate port number configured on your php server, to view and interact with the blog
 
 
 ## Screenshots
