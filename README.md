@@ -12,5 +12,8 @@ This project uses the slim micro framework, the twig template engine and sqlite 
 **Delete post** A post can deleted by using the delete butotn under the name of the post while on the home page or by clicking on the specific post and then clicking on the delete button at the bottom of the post page. 
 
 ## Screenshots
+ ![List of posts](img/blog_homepage.png)
+ ![An individual post](img/blog_post.png)
+ ![Comment on a post](img/blog_comment.png)
 
 
